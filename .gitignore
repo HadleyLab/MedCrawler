@@ -30,3 +30,14 @@ demo/
 demo-data/
 demo.config.js
 demo-credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
