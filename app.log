@@ -1,0 +1,2437 @@
+2025-03-10 15:44:10,115 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 15:44:10,849 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 15:44:10,949 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:44:25,743 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 92, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:44:25,746 [ERROR] __mp_main__: Task execution failed: Error Task - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 92, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:45:03,807 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 92, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:45:03,807 [ERROR] __mp_main__: Task execution failed: Error Task - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 92, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:46:05,393 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in async task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 90, in notify_task
+    result = await task
+             ^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 42, in error_async_task
+    raise ValueError("Simulated error in async task")
+ValueError: Simulated error in async task
+2025-03-10 15:46:05,393 [ERROR] __mp_main__: Task execution failed: Error Async - Simulated error in async task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 90, in notify_task
+    result = await task
+             ^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 42, in error_async_task
+    raise ValueError("Simulated error in async task")
+ValueError: Simulated error in async task
+2025-03-10 15:47:00,636 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 92, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:47:00,636 [ERROR] __mp_main__: Task execution failed: Error Demo - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 92, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:50:57,867 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:50:58,350 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:50:58,779 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 15:50:58,857 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 15:51:16,429 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:51:16,431 [ERROR] __mp_main__: Task execution failed: Error Task - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 15:51:44,296 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 15:51:46,177 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 15:51:52,156 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:51:52,661 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:51:53,143 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 15:51:53,234 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 15:52:29,016 [ERROR] pages.search: Search error
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 91, in notify_task
+    ui.notify(
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/functions/notify.py", line 52, in notify
+    client = context.client
+             ^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/context.py", line 31, in client
+    return self.slot.parent.client
+           ^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/context.py", line 23, in slot
+    raise RuntimeError('The current slot cannot be determined because the slot stack for this task is empty.\n'
+RuntimeError: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/pages/search.py", line 43, in perform_search
+    await notification_manager.notify_task(
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 121, in notify_task
+    ui.notify(
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/functions/notify.py", line 52, in notify
+    client = context.client
+             ^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/context.py", line 31, in client
+    return self.slot.parent.client
+           ^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/context.py", line 23, in slot
+    raise RuntimeError('The current slot cannot be determined because the slot stack for this task is empty.\n'
+RuntimeError: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 15:52:29,018 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 15:54:40,577 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:54:41,095 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:54:41,507 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 15:54:41,610 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 15:57:17,195 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:57:18,215 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 15:57:18,300 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 15:57:29,574 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:57:30,546 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 15:57:30,632 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 15:57:52,223 [ERROR] backend.utils.notification_manager: Task failed: coroutines cannot be used with run_in_executor()
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 2735, in uvloop.loop.Loop.run_in_executor
+TypeError: coroutines cannot be used with run_in_executor()
+2025-03-10 15:57:52,223 [ERROR] pages.search: Search error
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/pages/search.py", line 54, in _handle_search
+    await notification_manager.notify_task(
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "uvloop/loop.pyx", line 2735, in uvloop.loop.Loop.run_in_executor
+TypeError: coroutines cannot be used with run_in_executor()
+2025-03-10 15:58:56,735 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:58:57,279 [INFO] watchfiles.main: 1 change detected
+2025-03-10 15:58:57,729 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 15:58:57,801 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:00:22,642 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:00:23,611 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:00:23,682 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:00:56,131 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:00:57,027 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:00:57,127 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:00:59,768 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:01:00,628 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:01:00,721 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:01:12,844 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:01:12,844 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "test",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:13,305 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:13,305 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:12 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FD5E73ADD5B06B61_3A07SID', 'NCBI-PHID': 'D0BDD793D08B9645000025C482CBA5F5.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FD5E73ADD5B06B61_3A07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:01:13 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:13,306 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "3656642"
+  }
+}...
+2025-03-10 16:01:13,507 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:01:13,507 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "test",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:13,771 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:13,772 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:12 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FD5E73ADD5B06B61_3A07SID', 'NCBI-PHID': 'D0BDD793D08B9645000060C483BF9591.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FD5E73ADD5B06B61_3A07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:01:13 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:13,772 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "3656642",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063107",
+      "40063106",
+      "40063086",
+      "40063084",
+      "40063082",
+      "40063074",
+      "40063069",
+      "40063065",
+      "40063061",
+      "40063048",
+      "40063047",
+      "40063029",
+      "40063026",
+      "40063025",
+      "40063024",
+      "40063022",
+      "40063020",
+      "40063015",
+      "4...
+2025-03-10 16:01:13,772 [INFO] backend.crawlers.base: Fetching batch 1/1 (5 items)
+2025-03-10 16:01:13,972 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:13,973 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40063069",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:13,973 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:13,973 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40063024",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:13,974 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:13,974 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062937",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:13,974 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:13,974 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062840",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:13,974 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:13,975 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062280",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:14,100 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:14,100 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:13 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FD5E73ADD5B06B61_3A07SID', 'NCBI-PHID': 'D0BDD793D08B964500003DC484D69DFF.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FD5E73ADD5B06B61_3A07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:01:14 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:14,106 [INFO] backend.crawlers.base: Response status: 429
+2025-03-10 16:01:14,106 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:13 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'Retry-After': '2', 'Content-Type': 'application/json', 'Content-Length': '101', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining,Retry-After', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block'}
+2025-03-10 16:01:14,106 [WARNING] backend.crawlers.base: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+
+2025-03-10 16:01:14,106 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:01:14,106 [ERROR] backend.crawlers.base: Exception during request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/crawlers/base.py", line 197, in _make_request
+    raise RateLimitError(message)
+backend.crawlers.exceptions.RateLimitError: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+
+2025-03-10 16:01:14,107 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:01:14,107 [INFO] backend.crawlers.base: Finished call to 'backend.crawlers.base.BaseCrawler._make_request' after 0.334(s), this was the 1st time calling it.
+2025-03-10 16:01:14,107 [WARNING] backend.crawlers.base: Retrying backend.crawlers.base.BaseCrawler._make_request in 1.0 seconds as it raised APIError: Error fetching item 40062280: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+.
+2025-03-10 16:01:14,108 [INFO] backend.crawlers.base: Response status: 429
+2025-03-10 16:01:14,108 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:13 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'Retry-After': '2', 'Content-Type': 'application/json', 'Content-Length': '101', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining,Retry-After', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block'}
+2025-03-10 16:01:14,108 [WARNING] backend.crawlers.base: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+
+2025-03-10 16:01:14,108 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:01:14,108 [ERROR] backend.crawlers.base: Exception during request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/crawlers/base.py", line 197, in _make_request
+    raise RateLimitError(message)
+backend.crawlers.exceptions.RateLimitError: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+
+2025-03-10 16:01:14,108 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:01:14,109 [INFO] backend.crawlers.base: Finished call to 'backend.crawlers.base.BaseCrawler._make_request' after 0.336(s), this was the 1st time calling it.
+2025-03-10 16:01:14,109 [WARNING] backend.crawlers.base: Retrying backend.crawlers.base.BaseCrawler._make_request in 1.0 seconds as it raised APIError: Error fetching item 40062937: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+.
+2025-03-10 16:01:14,109 [INFO] backend.crawlers.base: Response status: 429
+2025-03-10 16:01:14,109 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:13 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'Retry-After': '2', 'Content-Type': 'application/json', 'Content-Length': '101', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining,Retry-After', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block'}
+2025-03-10 16:01:14,109 [WARNING] backend.crawlers.base: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+
+2025-03-10 16:01:14,110 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:01:14,110 [ERROR] backend.crawlers.base: Exception during request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/crawlers/base.py", line 197, in _make_request
+    raise RateLimitError(message)
+backend.crawlers.exceptions.RateLimitError: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+
+2025-03-10 16:01:14,110 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:01:14,110 [INFO] backend.crawlers.base: Finished call to 'backend.crawlers.base.BaseCrawler._make_request' after 0.338(s), this was the 1st time calling it.
+2025-03-10 16:01:14,111 [WARNING] backend.crawlers.base: Retrying backend.crawlers.base.BaseCrawler._make_request in 1.0 seconds as it raised APIError: Error fetching item 40062840: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"4","limit":"3"}
+.
+2025-03-10 16:01:14,135 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40063069</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Electronic"><Journal><ISSN IssnType="Electronic">1438-8871</ISSN><JournalIssue CitedMedium="Internet"><Volume>27</Volume><Pu...
+2025-03-10 16:01:14,185 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:14,185 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:13 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FD5E73ADD5B06B61_3A07SID', 'NCBI-PHID': 'D0BDD793D08B9645000044C4850633D6.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FD5E73ADD5B06B61_3A07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:01:14 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:14,225 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Automated"><PMID Version="1">40063024</PMID><DateCompleted><Year>2025</Year><Month>03</Month><Day>10</Day></DateCompleted><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Electronic"><Journal>...
+2025-03-10 16:01:15,308 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:15,308 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062280",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:15,309 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:15,310 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062937",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:15,311 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:01:15,311 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062840",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:01:15,437 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:15,437 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:14 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FD5E73ADD5B06B61_3A07SID', 'NCBI-PHID': 'D0BDD793D08B964500005FC487438C45.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FD5E73ADD5B06B61_3A07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:01:15 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:15,438 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:15,438 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:14 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FD5E73ADD5B06B61_3A07SID', 'NCBI-PHID': 'D0BDD793D08B9645000061C48744C342.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FD5E73ADD5B06B61_3A07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:01:15 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:15,476 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062937</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1536-3732</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:01:15,477 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062840</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1522-2586</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:01:15,479 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:15,479 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:14 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FD5E73ADD5B06B61_3A07SID', 'NCBI-PHID': '322C1EB26B7FD5C5000055C2FEE3A477.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FD5E73ADD5B06B61_3A07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:01:15 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:15,479 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM"><PMID Version="1">40062280</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Electronic-eCollection"><Journal><ISSN IssnType="Electronic">2376-5992</ISSN><JournalIssue CitedMedium="Internet"><...
+2025-03-10 16:01:15,693 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:01:15,694 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "test",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 16:01:15,822 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:01:15,823 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:15,823 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:15 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '42', 'Set-Cookie': 'ncbi_sid=06868DB9302D2A84_F8AFSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:15,990 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01372982",
+          "orgStudyIdInfo": {
+            "id": "033/08"
+          },
+          "organization": {
+            "fullName": "Dr. Reddy's Laboratories Limited",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Bioavailability Study of Letrozole Tablets 2.5 mg of Dr.Reddy's Under Fed Conditions",
+          "officialTitle": "An Open Label, Balanced, Randomized, Tw...
+2025-03-10 16:01:15,991 [INFO] backend.crawlers.base: Fetching batch 1/1 (5 items)
+2025-03-10 16:01:16,192 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:01:16,192 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT01372982",
+  "format": "json"
+}
+2025-03-10 16:01:16,192 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:01:16,192 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT06696482",
+  "format": "json"
+}
+2025-03-10 16:01:16,193 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:01:16,193 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT05347420",
+  "format": "json"
+}
+2025-03-10 16:01:16,193 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:01:16,193 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT01459120",
+  "format": "json"
+}
+2025-03-10 16:01:16,193 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:01:16,193 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT04134520",
+  "format": "json"
+}
+2025-03-10 16:01:16,252 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:01:16,253 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:16,253 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:16 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '12', 'Set-Cookie': 'ncbi_sid=CB9506A48BDDE0EC_9A72SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:16,254 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01372982",
+          "orgStudyIdInfo": {
+            "id": "033/08"
+          },
+          "organization": {
+            "fullName": "Dr. Reddy's Laboratories Limited",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Bioavailability Study of Letrozole Tablets 2.5 mg of Dr.Reddy's Under Fed Conditions",
+          "officialTitle": "An Open Label, Balanced, Randomized, Tw...
+2025-03-10 16:01:16,279 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:01:16,279 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:16,279 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:16 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '9', 'Set-Cookie': 'ncbi_sid=A63ABE31782BD637_DBE7SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:16,280 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT05347420",
+          "orgStudyIdInfo": {
+            "id": "2020-403"
+          },
+          "organization": {
+            "fullName": "First Affiliated Hospital of Chongqing Medical University",
+            "class": "OTHER"
+          },
+          "briefTitle": "Diagnostic Accuracy of Quantitative Neuropad Test for Diabetic Peripheral Neuropathy",
+          "officialTitle": "Diagnostic Accu...
+2025-03-10 16:01:16,280 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:01:16,280 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:16,280 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:16 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '8', 'Set-Cookie': 'ncbi_sid=3D521A06C10DBD97_3533SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:16,281 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT04134520",
+          "orgStudyIdInfo": {
+            "id": "PL 210"
+          },
+          "organization": {
+            "fullName": "Fresh Medical Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Establish ProLung Test Measurement Collection Protocol for Future Studies.",
+          "officialTitle": "PL-210: Establish ProLung Test Measurement Collection P...
+2025-03-10 16:01:16,285 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:01:16,285 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:16,285 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:16 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '7', 'Set-Cookie': 'ncbi_sid=4C81134D61DE068E_0E97SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:16,286 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06696482",
+          "orgStudyIdInfo": {
+            "id": "EAST_Study"
+          },
+          "organization": {
+            "fullName": "University of Oxford",
+            "class": "OTHER"
+          },
+          "briefTitle": "Effort and Antidepressant Study Test",
+          "officialTitle": "Effort and Antidepressant Study Test",
+          "acronym": "EAST"
+        },
+        "statusModul...
+2025-03-10 16:01:16,291 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:01:16,291 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:01:16,291 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:01:16 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '11', 'Set-Cookie': 'ncbi_sid=5C5A4DBFA1F1FCA9_817DSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:01:16,292 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01459120",
+          "orgStudyIdInfo": {
+            "id": "DoDoPi-1"
+          },
+          "organization": {
+            "fullName": "SolidarMed",
+            "class": "OTHER"
+          },
+          "briefTitle": "Comparison of Door-to-door Versus Community Gathering to Provide HIV Counseling and Testing Services in Rural Lesotho",
+          "officialTitle": "Comparing Door-to-door Versus...
+2025-03-10 16:02:46,270 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:02:46,270 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "Hadley dexter",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:46,533 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:46,533 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:45 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '861EFD150CE9BDBC_7807SID', 'NCBI-PHID': 'D0BDD793D08B9645000037C4ED3A59F1.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=861EFD150CE9BDBC_7807SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:02:46 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:46,533 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "59"
+  }
+}...
+2025-03-10 16:02:46,734 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:02:46,734 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "Hadley dexter",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:47,436 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:47,436 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:47 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '861EFD150CE9BDBC_7807SID', 'NCBI-PHID': 'D0BDD793D08B964500005CC4ED86B884.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=861EFD150CE9BDBC_7807SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:02:47 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:47,437 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "59",
+    "retmax": "59",
+    "retstart": "0",
+    "idlist": [
+      "39585709",
+      "38146097",
+      "37539132",
+      "36505372",
+      "36398784",
+      "36268056",
+      "36187396",
+      "36158924",
+      "35673215",
+      "35612140",
+      "35612107",
+      "35585177",
+      "34837585",
+      "34697751",
+      "34648530",
+      "34604507",
+      "34381057",
+      "33492921",
+      "3326933...
+2025-03-10 16:02:47,437 [INFO] backend.crawlers.base: Fetching batch 1/1 (5 items)
+2025-03-10 16:02:47,638 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:02:47,639 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "33262303",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:47,639 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:02:47,639 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "23341896",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:47,639 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:02:47,639 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "35612107",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:47,640 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:02:47,640 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "37539132",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:47,640 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:02:47,640 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "38146097",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:47,768 [INFO] backend.crawlers.base: Response status: 429
+2025-03-10 16:02:47,769 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:47 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'Retry-After': '2', 'Content-Type': 'application/json', 'Content-Length': '100', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining,Retry-After', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block'}
+2025-03-10 16:02:47,769 [WARNING] backend.crawlers.base: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+
+2025-03-10 16:02:47,769 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:02:47,769 [ERROR] backend.crawlers.base: Exception during request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/crawlers/base.py", line 197, in _make_request
+    raise RateLimitError(message)
+backend.crawlers.exceptions.RateLimitError: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+
+2025-03-10 16:02:47,770 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:02:47,770 [INFO] backend.crawlers.base: Finished call to 'backend.crawlers.base.BaseCrawler._make_request' after 0.332(s), this was the 1st time calling it.
+2025-03-10 16:02:47,770 [WARNING] backend.crawlers.base: Retrying backend.crawlers.base.BaseCrawler._make_request in 1.0 seconds as it raised APIError: Error fetching item 23341896: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+.
+2025-03-10 16:02:47,770 [INFO] backend.crawlers.base: Response status: 429
+2025-03-10 16:02:47,770 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:46 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'Retry-After': '2', 'Content-Type': 'application/json', 'Content-Length': '100', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining,Retry-After', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block'}
+2025-03-10 16:02:47,770 [WARNING] backend.crawlers.base: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+
+2025-03-10 16:02:47,770 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:02:47,771 [ERROR] backend.crawlers.base: Exception during request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/crawlers/base.py", line 197, in _make_request
+    raise RateLimitError(message)
+backend.crawlers.exceptions.RateLimitError: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+
+2025-03-10 16:02:47,771 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 16:02:47,771 [INFO] backend.crawlers.base: Finished call to 'backend.crawlers.base.BaseCrawler._make_request' after 0.333(s), this was the 1st time calling it.
+2025-03-10 16:02:47,771 [WARNING] backend.crawlers.base: Retrying backend.crawlers.base.BaseCrawler._make_request in 1.0 seconds as it raised APIError: Error fetching item 38146097: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"5","limit":"3"}
+.
+2025-03-10 16:02:47,785 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:47,785 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:47 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '861EFD150CE9BDBC_7807SID', 'NCBI-PHID': 'D0BDD793D08B9645000052C4EE72DDEB.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=861EFD150CE9BDBC_7807SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:02:47 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:47,828 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Curated"><PMID Version="1">33262303</PMID><DateCompleted><Year>2021</Year><Month>10</Month><Day>13</Day></DateCompleted><DateRevised><Year>2023</Year><Month>07</Month><Day>01</Day></DateRevised><Article PubModel="Print-Electronic"><Jour...
+2025-03-10 16:02:47,896 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:47,896 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:47 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '861EFD150CE9BDBC_7807SID', 'NCBI-PHID': 'D0BDD793D08B9645000036C4EE8B408E.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=861EFD150CE9BDBC_7807SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:02:47 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:47,935 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Automated"><PMID Version="1">35612107</PMID><DateCompleted><Year>2022</Year><Month>05</Month><Day>26</Day></DateCompleted><DateRevised><Year>2023</Year><Month>07</Month><Day>14</Day></DateRevised><Article PubModel="Print"><Journal><ISSN...
+2025-03-10 16:02:48,183 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:48,184 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:48 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '861EFD150CE9BDBC_7807SID', 'NCBI-PHID': 'D0BDD793D08B9645000035C4EE8AA8FA.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=861EFD150CE9BDBC_7807SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:02:47 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:48,221 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM"><PMID Version="1">37539132</PMID><DateRevised><Year>2024</Year><Month>07</Month><Day>17</Day></DateRevised><Article PubModel="Electronic-eCollection"><Journal><ISSN IssnType="Print">2405-8440</ISSN><JournalIssue CitedMedium="Print"><Volume>9...
+2025-03-10 16:02:48,971 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:02:48,972 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "23341896",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:48,972 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:02:48,972 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "38146097",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:02:49,103 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:49,103 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:49 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '861EFD150CE9BDBC_7807SID', 'NCBI-PHID': 'D0BDD793D08B9645000031C4F03AEA65.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=861EFD150CE9BDBC_7807SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:02:49 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:49,117 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:49,117 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:48 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '861EFD150CE9BDBC_7807SID', 'NCBI-PHID': '939B8D0F598EF645000030A525EB7766.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=861EFD150CE9BDBC_7807SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:02:49 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:49,139 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Automated"><PMID Version="1">38146097</PMID><DateCompleted><Year>2024</Year><Month>01</Month><Day>29</Day></DateCompleted><DateRevised><Year>2024</Year><Month>02</Month><Day>06</Day></DateRevised><Article PubModel="Print-Electronic"><Jo...
+2025-03-10 16:02:49,162 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Manual"><PMID Version="1">23341896</PMID><DateCompleted><Year>2013</Year><Month>07</Month><Day>09</Day></DateCompleted><DateRevised><Year>2022</Year><Month>03</Month><Day>11</Day></DateRevised><Article PubModel="Print-Electronic"><Journ...
+2025-03-10 16:02:49,371 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:02:49,371 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "Hadley dexter",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 16:02:49,473 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:02:49,474 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:02:49,474 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:02:49 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '10', 'Set-Cookie': 'ncbi_sid=3BD0F8290D4ED8A2_E0F2SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:02:49,474 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": []
+}...
+2025-03-10 16:04:28,135 [INFO] test_config: Test log entry
+2025-03-10 16:04:28,220 [INFO] watchfiles.main: 3 changes detected
+2025-03-10 16:04:28,640 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:04:28,641 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer immunotherapy",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:28,978 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:28,978 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:28 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FFD0626845344669_9AAFSID', 'NCBI-PHID': 'D0BDD793D08B964500002BC5754BE4B4.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FFD0626845344669_9AAFSID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:28 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:28,979 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "196651"
+  }
+}...
+2025-03-10 16:04:29,480 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:04:29,480 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer immunotherapy",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:30,003 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:30,003 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:29 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FFD0626845344669_9AAFSID', 'NCBI-PHID': 'D0BDD793D08B964500002FC576B5D15E.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FFD0626845344669_9AAFSID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:29 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:30,004 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "196651",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063100",
+      "40063049",
+      "40062995",
+      "40062860",
+      "40062730",
+      "40062532",
+      "40062529",
+      "40062380",
+      "40062359",
+      "40061958",
+      "40061944",
+      "40061943",
+      "40061941",
+      "40061940",
+      "40061935",
+      "40061902",
+      "40061901",
+      "40061894",
+      "40...
+2025-03-10 16:04:30,504 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:04:30,504 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062532",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:30,741 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:30,742 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:29 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'FFD0626845344669_9AAFSID', 'NCBI-PHID': 'D0BDD793D08B9645000016C577E4340E.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=FFD0626845344669_9AAFSID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:30 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:30,780 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062532</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1096-8652</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:04:31,285 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:04:31,286 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "cancer immunotherapy",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 16:04:31,415 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:04:31,415 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:31,415 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:31 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '39', 'Set-Cookie': 'ncbi_sid=E5C2FEDBAD1EFFC2_F857SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:31,714 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00753220",
+          "orgStudyIdInfo": {
+            "id": "CRITICAL001"
+          },
+          "organization": {
+            "fullName": "Bostwick Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Safety Study of Autologous Dendritic Cells Injected Into the Prostate After Cryoablation for Advanced Prostate Cancer",
+          "officialTitle": "A Phase I/II...
+2025-03-10 16:04:32,215 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:04:32,216 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT00753220",
+  "format": "json"
+}
+2025-03-10 16:04:32,277 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:04:32,277 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:32,278 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:32 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '11', 'Set-Cookie': 'ncbi_sid=6E55801424D30D84_A648SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:32,280 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00753220",
+          "orgStudyIdInfo": {
+            "id": "CRITICAL001"
+          },
+          "organization": {
+            "fullName": "Bostwick Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Safety Study of Autologous Dendritic Cells Injected Into the Prostate After Cryoablation for Advanced Prostate Cancer",
+          "officialTitle": "A Phase I/II...
+2025-03-10 16:04:32,783 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:04:32,784 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:33,244 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:33,244 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:32 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '384C7EB696485343_07A2SID', 'NCBI-PHID': 'D0BDD793D08B964500003FC57AA41D40.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=384C7EB696485343_07A2SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:33 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:33,245 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327"
+  }
+}...
+2025-03-10 16:04:33,746 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:04:33,747 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:34,412 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:34,412 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:33 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '384C7EB696485343_07A2SID', 'NCBI-PHID': 'D0BDD793D08B964500004EC57B92754E.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=384C7EB696485343_07A2SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:33 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:34,413 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063109",
+      "40063100",
+      "40063095",
+      "40063085",
+      "40063081",
+      "40063073",
+      "40063065",
+      "40063062",
+      "40063049",
+      "40063046",
+      "40063012",
+      "40063011",
+      "40063010",
+      "40063008",
+      "40063004",
+      "40063003",
+      "40063000",
+      "40062998",
+      "4...
+2025-03-10 16:04:34,413 [INFO] backend.crawlers.base: Fetching batch 1/2 (2 items)
+2025-03-10 16:04:34,993 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:04:34,993 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "invalid_id_xyz123",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:35,248 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:35,248 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:35 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '56A617AF46BE8E15_A5E5SID', 'NCBI-PHID': '322C1EB26B7FD5C5000038C3EEFF4A9A.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=56A617AF46BE8E15_A5E5SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:35 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:35,248 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Manual"><PMID Version="1">123</PMID><DateCompleted><Year>1976</Year><Month>02</Month><Day>09</Day></DateCompleted><DateRevised><Year>2019</Year><Month>07</Month><Day>05</Day></DateRevised><Article PubModel="Print"><Journal><ISSN IssnTyp...
+2025-03-10 16:04:35,755 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:04:35,755 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:36,121 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:36,121 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:35 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '03C428ED18B2FA00_CFACSID', 'NCBI-PHID': 'D0BDD793D08B964500002CC57DF4237A.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=03C428ED18B2FA00_CFACSID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:35 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:36,122 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327"
+  }
+}...
+2025-03-10 16:04:36,622 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:04:36,623 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:04:37,905 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:04:37,905 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:04:37 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '03C428ED18B2FA00_CFACSID', 'NCBI-PHID': 'D0BDD793D08B9645000039C57F37468A.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=03C428ED18B2FA00_CFACSID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:04:37 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:04:37,906 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063109",
+      "40063100",
+      "40063095",
+      "40063085",
+      "40063081",
+      "40063073",
+      "40063065",
+      "40063062",
+      "40063049",
+      "40063046",
+      "40063012",
+      "40063011",
+      "40063010",
+      "40063008",
+      "40063004",
+      "40063003",
+      "40063000",
+      "40062998",
+      "4...
+2025-03-10 16:07:06,512 [INFO] test_config: Test log entry
+2025-03-10 16:07:07,018 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:07:07,019 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer immunotherapy",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:07,365 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:07,365 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:06 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '9CCED9794DDBB1DF_3237SID', 'NCBI-PHID': '939B8D0F598EF645000037A67160B24D.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=9CCED9794DDBB1DF_3237SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:07 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:07,366 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "196651"
+  }
+}...
+2025-03-10 16:07:07,867 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:07:07,868 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer immunotherapy",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:08,104 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:08,105 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:07 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '9CCED9794DDBB1DF_3237SID', 'NCBI-PHID': '939B8D0F598EF645000047A6732BAF2B.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=9CCED9794DDBB1DF_3237SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:07 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:08,105 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "196651",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063100",
+      "40063049",
+      "40062995",
+      "40062860",
+      "40062730",
+      "40062532",
+      "40062529",
+      "40062380",
+      "40062359",
+      "40061958",
+      "40061944",
+      "40061943",
+      "40061941",
+      "40061940",
+      "40061935",
+      "40061902",
+      "40061901",
+      "40061894",
+      "40...
+2025-03-10 16:07:08,606 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:07:08,607 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40055132",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:08,732 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:08,732 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:08 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '9CCED9794DDBB1DF_3237SID', 'NCBI-PHID': '939B8D0F598EF64500004BA6754602AD.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=9CCED9794DDBB1DF_3237SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:08 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:08,770 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40055132</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>07</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1938-0690</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:07:09,275 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:07:09,275 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "cancer immunotherapy",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 16:07:09,415 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:07:09,416 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:09,416 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:09 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '43', 'Set-Cookie': 'ncbi_sid=7D0391BA4A27C029_55CCSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:09,749 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00753220",
+          "orgStudyIdInfo": {
+            "id": "CRITICAL001"
+          },
+          "organization": {
+            "fullName": "Bostwick Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Safety Study of Autologous Dendritic Cells Injected Into the Prostate After Cryoablation for Advanced Prostate Cancer",
+          "officialTitle": "A Phase I/II...
+2025-03-10 16:07:10,251 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:07:10,251 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT00753220",
+  "format": "json"
+}
+2025-03-10 16:07:10,309 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:07:10,309 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:10,309 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:10 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '9', 'Set-Cookie': 'ncbi_sid=D3E4A405E6C93118_C0FBSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:10,311 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00753220",
+          "orgStudyIdInfo": {
+            "id": "CRITICAL001"
+          },
+          "organization": {
+            "fullName": "Bostwick Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Safety Study of Autologous Dendritic Cells Injected Into the Prostate After Cryoablation for Advanced Prostate Cancer",
+          "officialTitle": "A Phase I/II...
+2025-03-10 16:07:10,815 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:07:10,815 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:11,178 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:11,178 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:10 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F9653D5B3922E044_304ASID', 'NCBI-PHID': 'D0BDD793D08B9645000037C66989720F.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F9653D5B3922E044_304ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:10 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:11,179 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327"
+  }
+}...
+2025-03-10 16:07:11,680 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:07:11,681 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:12,110 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:12,111 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:11 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F9653D5B3922E044_304ASID', 'NCBI-PHID': 'D0BDD793D08B9645000059C66A82F2DB.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F9653D5B3922E044_304ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:11 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:12,111 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063109",
+      "40063100",
+      "40063095",
+      "40063085",
+      "40063081",
+      "40063073",
+      "40063065",
+      "40063062",
+      "40063049",
+      "40063046",
+      "40063012",
+      "40063011",
+      "40063010",
+      "40063008",
+      "40063004",
+      "40063003",
+      "40063000",
+      "40062998",
+      "4...
+2025-03-10 16:07:12,111 [INFO] backend.crawlers.base: Fetching batch 1/2 (2 items)
+2025-03-10 16:07:12,612 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:07:12,612 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062962",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:12,613 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:07:12,613 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40063011",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:12,789 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:12,789 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:12 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F9653D5B3922E044_304ASID', 'NCBI-PHID': 'D0BDD793D08B964500002CC66BE50BD5.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F9653D5B3922E044_304ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:12 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:12,789 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062962</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1477-9234</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:07:12,898 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:12,898 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:12 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F9653D5B3922E044_304ASID', 'NCBI-PHID': 'D0BDD793D08B964500004BC66BFC905F.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F9653D5B3922E044_304ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:12 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:12,898 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40063011</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1477-2213</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:07:12,899 [INFO] backend.crawlers.base: Fetching batch 2/2 (1 items)
+2025-03-10 16:07:13,400 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:07:13,401 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062370",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:13,568 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:13,568 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:12 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F9653D5B3922E044_304ASID', 'NCBI-PHID': 'D0BDD793D08B964500002FC66CEB0B10.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F9653D5B3922E044_304ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:13 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:13,605 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062370</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">2149-2271</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:07:14,108 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:07:14,108 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "cancer",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 16:07:14,240 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:07:14,240 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:14,240 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:14 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '43', 'Set-Cookie': 'ncbi_sid=43AD31D42F11956F_805ESID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:14,544 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00003082",
+          "orgStudyIdInfo": {
+            "id": "CDR0000065781"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "P30CA023074",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/P30CA023074"
+            },
+            {
+              "id": "UARIZ-HSC-95178"
+            },
+            {
+              "id": "NCI-T...
+2025-03-10 16:07:14,545 [INFO] backend.crawlers.base: Fetching batch 1/2 (2 items)
+2025-03-10 16:07:15,046 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:07:15,047 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT00003082",
+  "format": "json"
+}
+2025-03-10 16:07:15,047 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:07:15,048 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT00301782",
+  "format": "json"
+}
+2025-03-10 16:07:15,111 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:07:15,111 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:15,111 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:15 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '10', 'Set-Cookie': 'ncbi_sid=1FF8A1ADC89864C4_5B43SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:15,114 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00003082",
+          "orgStudyIdInfo": {
+            "id": "CDR0000065781"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "P30CA023074",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/P30CA023074"
+            },
+            {
+              "id": "UARIZ-HSC-95178"
+            },
+            {
+              "id": "NCI-T...
+2025-03-10 16:07:15,150 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:07:15,150 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:15,151 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:15 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '11', 'Set-Cookie': 'ncbi_sid=EF4BB928640AF555_AFBCSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:15,153 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00301782",
+          "orgStudyIdInfo": {
+            "id": "CDR0000456203"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "MRC-TE23"
+            },
+            {
+              "id": "EU-205107"
+            },
+            {
+              "id": "ISRCTN53643604"
+            },
+            {
+              "id": "EUDRACT-2004-000405-22"
+            }
+          ],
+...
+2025-03-10 16:07:15,153 [INFO] backend.crawlers.base: Fetching batch 2/2 (1 items)
+2025-03-10 16:07:15,654 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:07:15,654 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT06095882",
+  "format": "json"
+}
+2025-03-10 16:07:15,713 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:07:15,713 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:15,713 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:15 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '8', 'Set-Cookie': 'ncbi_sid=DF6BA7A224C1BD58_506ASID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:15,715 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06095882",
+          "orgStudyIdInfo": {
+            "id": "KYLL-202309-002"
+          },
+          "organization": {
+            "fullName": "Qilu Hospital of Shandong University",
+            "class": "OTHER"
+          },
+          "briefTitle": "Randomized Controlled, Open Clinical Study on Efficacy and Safety of Acupuncture for Bladder Function Recovery After Radical Cervical Cancer Sur...
+2025-03-10 16:07:16,219 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:07:16,220 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "invalid_id_xyz123",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:16,471 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:16,471 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:15 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '841B76D399C62342_7D23SID', 'NCBI-PHID': '939B8D0F598EF645000029A687C66ED0.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=841B76D399C62342_7D23SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:16 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:16,471 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Manual"><PMID Version="1">123</PMID><DateCompleted><Year>1976</Year><Month>02</Month><Day>09</Day></DateCompleted><DateRevised><Year>2019</Year><Month>07</Month><Day>05</Day></DateRevised><Article PubModel="Print"><Journal><ISSN IssnTyp...
+2025-03-10 16:07:17,039 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:07:17,039 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:17,652 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:17,652 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:16 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '9B84F68D8FA2058A_55D9SID', 'NCBI-PHID': '939B8D0F598EF645000016A689FC4AC6.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=9B84F68D8FA2058A_55D9SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:17 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:17,653 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327"
+  }
+}...
+2025-03-10 16:07:18,153 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:07:18,153 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:07:18,432 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:07:18,432 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:07:17 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '9B84F68D8FA2058A_55D9SID', 'NCBI-PHID': '939B8D0F598EF645000026A68D281032.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=9B84F68D8FA2058A_55D9SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:07:18 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:07:18,432 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063109",
+      "40063100",
+      "40063095",
+      "40063085",
+      "40063081",
+      "40063073",
+      "40063065",
+      "40063062",
+      "40063049",
+      "40063046",
+      "40063012",
+      "40063011",
+      "40063010",
+      "40063008",
+      "40063004",
+      "40063003",
+      "40063000",
+      "40062998",
+      "4...
+2025-03-10 16:14:00,177 [INFO] test_config: Test log entry
+2025-03-10 16:14:00,684 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:14:00,684 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer immunotherapy",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:01,129 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:01,129 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:00 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '69E74283309619D9_750ASID', 'NCBI-PHID': '939B8D0F598EF645000038A8A8AB232F.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=69E74283309619D9_750ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:00 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:01,129 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "196651"
+  }
+}...
+2025-03-10 16:14:01,631 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:14:01,632 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer immunotherapy",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:01,867 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:01,867 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:00 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '69E74283309619D9_750ASID', 'NCBI-PHID': '939B8D0F598EF64500004BA8A97D77A8.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=69E74283309619D9_750ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:01 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:01,868 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "196651",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063100",
+      "40063049",
+      "40062995",
+      "40062860",
+      "40062730",
+      "40062532",
+      "40062529",
+      "40062380",
+      "40062359",
+      "40061958",
+      "40061944",
+      "40061943",
+      "40061941",
+      "40061940",
+      "40061935",
+      "40061902",
+      "40061901",
+      "40061894",
+      "40...
+2025-03-10 16:14:02,369 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:14:02,369 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40059083",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:02,931 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:02,932 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:02 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '69E74283309619D9_750ASID', 'NCBI-PHID': 'D0BDD793D08B964500004DC8B070DC3B.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=69E74283309619D9_750ASID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:02 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:02,976 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Automated"><PMID Version="1">40059083</PMID><DateCompleted><Year>2025</Year><Month>03</Month><Day>09</Day></DateCompleted><DateRevised><Year>2025</Year><Month>03</Month><Day>09</Day></DateRevised><Article PubModel="Print"><Journal><ISSN...
+2025-03-10 16:14:03,481 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:14:03,482 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "cancer immunotherapy",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 16:14:03,628 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:14:03,628 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:03,628 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:03 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '48', 'Set-Cookie': 'ncbi_sid=C7E8A06665158819_7145SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:03,929 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00753220",
+          "orgStudyIdInfo": {
+            "id": "CRITICAL001"
+          },
+          "organization": {
+            "fullName": "Bostwick Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Safety Study of Autologous Dendritic Cells Injected Into the Prostate After Cryoablation for Advanced Prostate Cancer",
+          "officialTitle": "A Phase I/II...
+2025-03-10 16:14:04,430 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:14:04,431 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT00753220",
+  "format": "json"
+}
+2025-03-10 16:14:04,489 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:14:04,489 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:04,489 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:04 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '11', 'Set-Cookie': 'ncbi_sid=A0C1A01A03C636C4_BC24SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:04,491 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00753220",
+          "orgStudyIdInfo": {
+            "id": "CRITICAL001"
+          },
+          "organization": {
+            "fullName": "Bostwick Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Safety Study of Autologous Dendritic Cells Injected Into the Prostate After Cryoablation for Advanced Prostate Cancer",
+          "officialTitle": "A Phase I/II...
+2025-03-10 16:14:04,993 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:14:04,994 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:05,456 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:05,456 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:04 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F61CC7F655510B60_E110SID', 'NCBI-PHID': '322C1EB26B7FD5C500005CC729A27778.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F61CC7F655510B60_E110SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:05 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:05,456 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327"
+  }
+}...
+2025-03-10 16:14:05,957 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:14:05,958 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:06,313 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:06,313 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:05 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F61CC7F655510B60_E110SID', 'NCBI-PHID': '322C1EB26B7FD5C5000063C72C0E6F84.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F61CC7F655510B60_E110SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:06 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:06,313 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063109",
+      "40063100",
+      "40063095",
+      "40063085",
+      "40063081",
+      "40063073",
+      "40063065",
+      "40063062",
+      "40063049",
+      "40063046",
+      "40063012",
+      "40063011",
+      "40063010",
+      "40063008",
+      "40063004",
+      "40063003",
+      "40063000",
+      "40062998",
+      "4...
+2025-03-10 16:14:06,314 [INFO] backend.crawlers.base: Fetching batch 1/2 (2 items)
+2025-03-10 16:14:06,815 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:14:06,816 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40063000",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:06,817 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:14:06,817 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40063003",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:07,017 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:07,017 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:06 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F61CC7F655510B60_E110SID', 'NCBI-PHID': '322C1EB26B7FD5C5000038C72DFF4F39.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F61CC7F655510B60_E110SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:06 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:07,022 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40063000</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1479-6821</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:14:07,027 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:07,028 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:06 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F61CC7F655510B60_E110SID', 'NCBI-PHID': 'D0BDD793D08B9645000036C8B758D96E.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F61CC7F655510B60_E110SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:06 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:07,066 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40063003</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1097-0215</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:14:07,068 [INFO] backend.crawlers.base: Fetching batch 2/2 (1 items)
+2025-03-10 16:14:07,568 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:14:07,568 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40063062",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:07,747 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:07,748 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:07 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'F61CC7F655510B60_E110SID', 'NCBI-PHID': '322C1EB26B7FD5C500005BC72FBDCF4B.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=F61CC7F655510B60_E110SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:07 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:07,748 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40063062</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1554-8937</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 16:14:08,250 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:14:08,251 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "cancer",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 16:14:08,376 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:14:08,377 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:08,377 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:08 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '43', 'Set-Cookie': 'ncbi_sid=0A0196015A0AFA94_CF8BSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:08,678 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00003082",
+          "orgStudyIdInfo": {
+            "id": "CDR0000065781"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "P30CA023074",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/P30CA023074"
+            },
+            {
+              "id": "UARIZ-HSC-95178"
+            },
+            {
+              "id": "NCI-T...
+2025-03-10 16:14:08,678 [INFO] backend.crawlers.base: Fetching batch 1/2 (2 items)
+2025-03-10 16:14:09,180 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:14:09,180 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT00003082",
+  "format": "json"
+}
+2025-03-10 16:14:09,181 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:14:09,181 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT00301782",
+  "format": "json"
+}
+2025-03-10 16:14:09,235 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:14:09,236 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:09,236 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:09 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '11', 'Set-Cookie': 'ncbi_sid=0B6A8F78E416F494_78A8SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:09,238 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00003082",
+          "orgStudyIdInfo": {
+            "id": "CDR0000065781"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "P30CA023074",
+              "type": "NIH",
+              "link": "https://reporter.nih.gov/quickSearch/P30CA023074"
+            },
+            {
+              "id": "UARIZ-HSC-95178"
+            },
+            {
+              "id": "NCI-T...
+2025-03-10 16:14:09,270 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:14:09,270 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:09,271 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:09 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '9', 'Set-Cookie': 'ncbi_sid=7D2AD0AB31FEFBAE_41C5SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:09,272 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00301782",
+          "orgStudyIdInfo": {
+            "id": "CDR0000456203"
+          },
+          "secondaryIdInfos": [
+            {
+              "id": "MRC-TE23"
+            },
+            {
+              "id": "EU-205107"
+            },
+            {
+              "id": "ISRCTN53643604"
+            },
+            {
+              "id": "EUDRACT-2004-000405-22"
+            }
+          ],
+...
+2025-03-10 16:14:09,273 [INFO] backend.crawlers.base: Fetching batch 2/2 (1 items)
+2025-03-10 16:14:09,773 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 16:14:09,773 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT06095882",
+  "format": "json"
+}
+2025-03-10 16:14:09,835 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 16:14:09,835 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:09,835 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:09 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '11', 'Set-Cookie': 'ncbi_sid=5573BD540263C950_4541SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:09,836 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06095882",
+          "orgStudyIdInfo": {
+            "id": "KYLL-202309-002"
+          },
+          "organization": {
+            "fullName": "Qilu Hospital of Shandong University",
+            "class": "OTHER"
+          },
+          "briefTitle": "Randomized Controlled, Open Clinical Study on Efficacy and Safety of Acupuncture for Bladder Function Recovery After Radical Cervical Cancer Sur...
+2025-03-10 16:14:10,340 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 16:14:10,341 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "invalid_id_xyz123",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:10,615 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:10,615 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:09 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': 'B0AA7B34A507D614_5BC2SID', 'NCBI-PHID': 'D0BDD793D08B9645000024C8BD464EB6.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=B0AA7B34A507D614_5BC2SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:10 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:10,615 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Manual"><PMID Version="1">123</PMID><DateCompleted><Year>1976</Year><Month>02</Month><Day>09</Day></DateCompleted><DateRevised><Year>2019</Year><Month>07</Month><Day>05</Day></DateRevised><Article PubModel="Print"><Journal><ISSN IssnTyp...
+2025-03-10 16:14:11,184 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:14:11,184 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:11,552 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:11,552 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:11 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '614060E19A170058_5E07SID', 'NCBI-PHID': '939B8D0F598EF64500002EA8B1038C90.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=614060E19A170058_5E07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:11 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:11,553 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327"
+  }
+}...
+2025-03-10 16:14:12,054 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 16:14:12,054 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "cancer",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 16:14:12,457 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 16:14:12,457 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 20:14:12 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '614060E19A170058_5E07SID', 'NCBI-PHID': '939B8D0F598EF645000039A8B19C2D19.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=614060E19A170058_5E07SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 20:14:12 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 16:14:12,458 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "5300327",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063109",
+      "40063100",
+      "40063095",
+      "40063085",
+      "40063081",
+      "40063073",
+      "40063065",
+      "40063062",
+      "40063049",
+      "40063046",
+      "40063012",
+      "40063011",
+      "40063010",
+      "40063008",
+      "40063004",
+      "40063003",
+      "40063000",
+      "40062998",
+      "4...
+2025-03-10 16:14:12,473 [ERROR] backend.utils.notification_manager: Task failed: Test error
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 141, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/tests/test_notification_manager.py", line 12, in mock_error_task
+    raise ValueError("Test error")
+ValueError: Test error
+2025-03-10 16:14:12,687 [ERROR] backend.utils.notification_manager: Task failed: Async error
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 136, in notify_task
+    result = await task
+             ^^^^^^^^^^
+  File "/Users/idrdex/notifications/tests/test_notification_manager.py", line 22, in mock_async_error
+    raise ValueError("Async error")
+ValueError: Async error
+2025-03-10 16:14:53,766 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:14:54,479 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:14:54,562 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:15:09,624 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:15:09,625 [ERROR] __mp_main__: Task execution failed: Error Task - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:15:19,378 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in async task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 106, in notify_task
+    result = await task
+             ^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 42, in error_async_task
+    raise ValueError("Simulated error in async task")
+ValueError: Simulated error in async task
+2025-03-10 16:15:19,378 [ERROR] __mp_main__: Task execution failed: Error Async - Simulated error in async task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 106, in notify_task
+    result = await task
+             ^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 42, in error_async_task
+    raise ValueError("Simulated error in async task")
+ValueError: Simulated error in async task
+2025-03-10 16:15:34,401 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:15:34,401 [ERROR] __mp_main__: Task execution failed: Error Demo - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:16:28,015 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:16:28,016 [ERROR] __mp_main__: Task execution failed: Error Demo - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:17:35,078 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:17:35,772 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:17:35,878 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:18:02,905 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:18:03,823 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:18:03,908 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:19:27,169 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:19:28,206 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:19:28,303 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:22:43,481 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:22:44,183 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:22:44,275 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:22:56,735 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:22:56,736 [ERROR] __mp_main__: Task execution failed: Error Demo - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 111, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 16:25:25,594 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:25:26,141 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:25:26,702 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:25:26,818 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:27:17,477 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:27:18,495 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:27:18,565 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 16:28:33,849 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:28:34,572 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:28:34,645 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:30:07,472 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:30:08,172 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:30:08,267 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:32:07,404 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:32:08,259 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:32:08,362 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:34:04,223 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:34:04,946 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:34:05,020 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:34:07,061 [ERROR] nicegui: JavaScript did not respond within 1.0 s
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/asyncio/tasks.py", line 500, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/asyncio/locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/javascript_request.py", line 26, in __await__
+    yield from asyncio.wait_for(self._event.wait(), self.timeout).__await__()
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/asyncio/tasks.py", line 502, in wait_for
+    raise exceptions.TimeoutError() from exc
+TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/background_tasks.py", line 52, in _handle_task_result
+    task.result()
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/client.py", line 313, in result_with_client
+    await result
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/page_layout.py", line 136, in _request_value
+    self.value = await context.client.run_javascript(js_code)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/client.py", line 221, in send_and_wait
+    return await JavaScriptRequest(request_id, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/site-packages/nicegui/javascript_request.py", line 28, in __await__
+    raise TimeoutError(f'JavaScript did not respond within {self.timeout:.1f} s') from e
+TimeoutError: JavaScript did not respond within 1.0 s
+2025-03-10 16:34:13,504 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 16:34:14,202 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:34:14,304 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:35:10,041 [INFO] watchfiles.main: 1 change detected
+2025-03-10 16:35:11,025 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 16:35:11,132 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 17:00:55,154 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 17:00:55,855 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 17:00:55,942 [INFO] watchfiles.main: 1 change detected
+2025-03-10 17:01:03,553 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 17:01:03,554 [ERROR] __mp_main__: Task execution failed: Error Task - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 17:01:15,073 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 17:01:15,074 [ERROR] __mp_main__: Task execution failed: Error Demo - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 105, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 17:03:06,182 [INFO] __main__: Starting Medical Literature Assistant
+2025-03-10 17:03:06,906 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 17:03:06,982 [INFO] watchfiles.main: 1 change detected
+2025-03-10 17:03:17,089 [ERROR] backend.utils.notification_manager: Task failed: Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 102, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 17:03:17,090 [ERROR] __mp_main__: Task execution failed: Error Task - Simulated error in task
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/app.py", line 38, in run_task
+    result = await notification_manager.notify_task(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/notification_manager.py", line 102, in notify_task
+    result = await asyncio.get_event_loop().run_in_executor(None, task)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/.conda/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/idrdex/notifications/backend/utils/tasks.py", line 22, in error_task
+    raise ValueError("Simulated error in task")
+ValueError: Simulated error in task
+2025-03-10 17:03:30,137 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 17:03:30,137 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "test",
+  "rettype": "count",
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:30,624 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:30,625 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:29 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '70AE7A574FADD4D9_CAB1SID', 'NCBI-PHID': '939B8D0F598EF64500002EBB15694C33.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=70AE7A574FADD4D9_CAB1SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 21:03:30 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:30,625 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "3656642"
+  }
+}...
+2025-03-10 17:03:30,826 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi
+2025-03-10 17:03:30,826 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "term": "test",
+  "retmax": 100,
+  "retstart": 0,
+  "retmode": "json",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:31,099 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:31,100 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:31 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '70AE7A574FADD4D9_CAB1SID', 'NCBI-PHID': '939B8D0F598EF64500002EBB16EBAC61.1.1.m_1', 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=70AE7A574FADD4D9_CAB1SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 21:03:30 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:31,100 [INFO] backend.crawlers.base: JSON Response preview: {
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "3656642",
+    "retmax": "100",
+    "retstart": "0",
+    "idlist": [
+      "40063107",
+      "40063106",
+      "40063086",
+      "40063084",
+      "40063082",
+      "40063074",
+      "40063069",
+      "40063065",
+      "40063061",
+      "40063048",
+      "40063047",
+      "40063029",
+      "40063026",
+      "40063025",
+      "40063024",
+      "40063022",
+      "40063020",
+      "40063015",
+      "4...
+2025-03-10 17:03:31,100 [INFO] backend.crawlers.base: Fetching batch 1/1 (5 items)
+2025-03-10 17:03:31,302 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 17:03:31,302 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40063029",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:31,302 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 17:03:31,303 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062415",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:31,303 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 17:03:31,303 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062847",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:31,303 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 17:03:31,303 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062910",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:31,304 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 17:03:31,304 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062997",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:31,431 [INFO] backend.crawlers.base: Response status: 429
+2025-03-10 17:03:31,431 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:30 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'Retry-After': '2', 'Content-Type': 'application/json', 'Content-Length': '100', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining,Retry-After', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block'}
+2025-03-10 17:03:31,431 [WARNING] backend.crawlers.base: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"6","limit":"3"}
+
+2025-03-10 17:03:31,431 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 17:03:31,431 [ERROR] backend.crawlers.base: Exception during request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"6","limit":"3"}
+Traceback (most recent call last):
+  File "/Users/idrdex/notifications/backend/crawlers/base.py", line 197, in _make_request
+    raise RateLimitError(message)
+backend.crawlers.exceptions.RateLimitError: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"6","limit":"3"}
+
+2025-03-10 17:03:31,432 [ERROR] backend.utils.notification_manager: Error creating notification: The current slot cannot be determined because the slot stack for this task is empty.
+This may happen if you try to create UI from a background task.
+To fix this, enter the target slot explicitly using `with container_element:`.
+2025-03-10 17:03:31,432 [INFO] backend.crawlers.base: Finished call to 'backend.crawlers.base.BaseCrawler._make_request' after 0.331(s), this was the 1st time calling it.
+2025-03-10 17:03:31,432 [WARNING] backend.crawlers.base: Retrying backend.crawlers.base.BaseCrawler._make_request in 1.0 seconds as it raised APIError: Error fetching item 40062415: Rate limit exceeded: {"error":"API rate limit exceeded","api-key":"66.42.18.85","count":"6","limit":"3"}
+.
+2025-03-10 17:03:31,454 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:31,454 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:30 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '70AE7A574FADD4D9_CAB1SID', 'NCBI-PHID': '939B8D0F598EF645000043BB18119EEF.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=70AE7A574FADD4D9_CAB1SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 21:03:31 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:31,495 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Automated"><PMID Version="1">40063029</PMID><DateCompleted><Year>2025</Year><Month>03</Month><Day>10</Day></DateCompleted><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Electronic"><Journal>...
+2025-03-10 17:03:31,550 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:31,550 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:31 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '70AE7A574FADD4D9_CAB1SID', 'NCBI-PHID': '939B8D0F598EF64500005DBB1856D960.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=70AE7A574FADD4D9_CAB1SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 21:03:31 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:31,556 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:31,556 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:31 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '70AE7A574FADD4D9_CAB1SID', 'NCBI-PHID': '322C1EB26B7FD5C5000041D880AADC4D.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=70AE7A574FADD4D9_CAB1SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 21:03:31 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:31,575 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:31,575 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:31 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '70AE7A574FADD4D9_CAB1SID', 'NCBI-PHID': '939B8D0F598EF64500005EBB1857567B.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '0', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=70AE7A574FADD4D9_CAB1SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 21:03:31 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:31,576 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062847</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">2379-5042</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 17:03:31,591 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062997</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1364-548X</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 17:03:31,593 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="Publisher" Owner="NLM"><PMID Version="1">40062910</PMID><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print-Electronic"><Journal><ISSN IssnType="Electronic">1477-9234</ISSN><JournalIssue CitedMedium="Internet"><PubDate><Year>2...
+2025-03-10 17:03:32,634 [INFO] backend.crawlers.base: Making API request to: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi
+2025-03-10 17:03:32,635 [INFO] backend.crawlers.base: With parameters: {
+  "db": "pubmed",
+  "id": "40062415",
+  "retmode": "xml",
+  "rettype": "full",
+  "tool": "MedLitAssistant"
+}
+2025-03-10 17:03:32,792 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:32,792 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:32 GMT', 'Server': 'Finatra', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Content-Security-Policy': 'upgrade-insecure-requests', 'Referrer-Policy': 'origin-when-cross-origin', 'NCBI-SID': '70AE7A574FADD4D9_CAB1SID', 'NCBI-PHID': '322C1EB26B7FD5C5000024D88203490B.1.1.m_5', 'Content-Type': 'text/xml; charset=UTF-8', 'Cache-Control': 'private', 'Content-Encoding': 'gzip', 'X-RateLimit-Limit': '3', 'X-RateLimit-Remaining': '2', 'Access-Control-Allow-Origin': '*', 'Access-Control-Expose-Headers': 'X-RateLimit-Limit,X-RateLimit-Remaining', 'Set-Cookie': 'ncbi_sid=70AE7A574FADD4D9_CAB1SID; domain=.nih.gov; path=/; expires=Tue, 10 Mar 2026 21:03:32 GMT', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:32,829 [INFO] backend.crawlers.base: Text Response preview: <?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle><MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Automated"><PMID Version="1">40062415</PMID><DateCompleted><Year>2025</Year><Month>03</Month><Day>10</Day></DateCompleted><DateRevised><Year>2025</Year><Month>03</Month><Day>10</Day></DateRevised><Article PubModel="Print"><Journal><ISSN...
+2025-03-10 17:03:33,041 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 17:03:33,041 [INFO] backend.crawlers.base: With parameters: {
+  "query.titles": "test",
+  "pageSize": 100,
+  "format": "json"
+}
+2025-03-10 17:03:33,173 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 17:03:33,173 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:33,173 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:33 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '43', 'Set-Cookie': 'ncbi_sid=E1234BF8DE1C41D4_095CSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:33,385 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01372982",
+          "orgStudyIdInfo": {
+            "id": "033/08"
+          },
+          "organization": {
+            "fullName": "Dr. Reddy's Laboratories Limited",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Bioavailability Study of Letrozole Tablets 2.5 mg of Dr.Reddy's Under Fed Conditions",
+          "officialTitle": "An Open Label, Balanced, Randomized, Tw...
+2025-03-10 17:03:33,385 [INFO] backend.crawlers.base: Fetching batch 1/1 (5 items)
+2025-03-10 17:03:33,586 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 17:03:33,587 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT01372982",
+  "format": "json"
+}
+2025-03-10 17:03:33,587 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 17:03:33,587 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT06696482",
+  "format": "json"
+}
+2025-03-10 17:03:33,588 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 17:03:33,588 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT05347420",
+  "format": "json"
+}
+2025-03-10 17:03:33,588 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 17:03:33,588 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT01459120",
+  "format": "json"
+}
+2025-03-10 17:03:33,588 [INFO] backend.crawlers.base: Making API request to: https://clinicaltrials.gov/api/v2/studies
+2025-03-10 17:03:33,588 [INFO] backend.crawlers.base: With parameters: {
+  "query.id": "NCT04134520",
+  "format": "json"
+}
+2025-03-10 17:03:33,650 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 17:03:33,650 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:33,650 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:33 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '8', 'Set-Cookie': 'ncbi_sid=058F9ED282743671_3B6CSID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:33,651 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01372982",
+          "orgStudyIdInfo": {
+            "id": "033/08"
+          },
+          "organization": {
+            "fullName": "Dr. Reddy's Laboratories Limited",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Bioavailability Study of Letrozole Tablets 2.5 mg of Dr.Reddy's Under Fed Conditions",
+          "officialTitle": "An Open Label, Balanced, Randomized, Tw...
+2025-03-10 17:03:33,689 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 17:03:33,689 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:33,689 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:33 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '9', 'Set-Cookie': 'ncbi_sid=4FFCE517BB7D8BB6_C566SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:33,690 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT04134520",
+          "orgStudyIdInfo": {
+            "id": "PL 210"
+          },
+          "organization": {
+            "fullName": "Fresh Medical Laboratories",
+            "class": "INDUSTRY"
+          },
+          "briefTitle": "Establish ProLung Test Measurement Collection Protocol for Future Studies.",
+          "officialTitle": "PL-210: Establish ProLung Test Measurement Collection P...
+2025-03-10 17:03:33,692 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 17:03:33,692 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:33,692 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:33 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '9', 'Set-Cookie': 'ncbi_sid=7372CA51C468236F_E1C7SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:33,693 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT05347420",
+          "orgStudyIdInfo": {
+            "id": "2020-403"
+          },
+          "organization": {
+            "fullName": "First Affiliated Hospital of Chongqing Medical University",
+            "class": "OTHER"
+          },
+          "briefTitle": "Diagnostic Accuracy of Quantitative Neuropad Test for Diabetic Peripheral Neuropathy",
+          "officialTitle": "Diagnostic Accu...
+2025-03-10 17:03:33,693 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 17:03:33,693 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:33,693 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:33 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '10', 'Set-Cookie': 'ncbi_sid=1BB111907BF0A808_2E62SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:33,694 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT01459120",
+          "orgStudyIdInfo": {
+            "id": "DoDoPi-1"
+          },
+          "organization": {
+            "fullName": "SolidarMed",
+            "class": "OTHER"
+          },
+          "briefTitle": "Comparison of Door-to-door Versus Community Gathering to Provide HIV Counseling and Testing Services in Rural Lesotho",
+          "officialTitle": "Comparing Door-to-door Versus...
+2025-03-10 17:03:33,695 [WARNING] aiohttp.client: Can not load response cookies: Invalid attribute 'x-enc'
+2025-03-10 17:03:33,695 [INFO] backend.crawlers.base: Response status: 200
+2025-03-10 17:03:33,695 [INFO] backend.crawlers.base: Response headers: {'Date': 'Mon, 10 Mar 2025 21:03:33 GMT', 'Server': 'istio-envoy', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'X-Frame-Options': 'SAMEORIGIN', 'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Etag': '"1/0.30.0/m82yqt9t"', 'x-envoy-upstream-service-time': '11', 'Set-Cookie': 'ncbi_sid=9DAC8B23A8429A08_C7A5SID; Max-Age=31536000; Domain=.nih.gov; Path=/; $x-enc=URI_ENCODING', 'X-UA-Compatible': 'IE=Edge', 'X-XSS-Protection': '1; mode=block', 'Via': '1.1 google', 'Alt-Svc': 'clear', 'Transfer-Encoding': 'chunked'}
+2025-03-10 17:03:33,696 [INFO] backend.crawlers.base: JSON Response preview: {
+  "studies": [
+    {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT06696482",
+          "orgStudyIdInfo": {
+            "id": "EAST_Study"
+          },
+          "organization": {
+            "fullName": "University of Oxford",
+            "class": "OTHER"
+          },
+          "briefTitle": "Effort and Antidepressant Study Test",
+          "officialTitle": "Effort and Antidepressant Study Test",
+          "acronym": "EAST"
+        },
+        "statusModul...
+2025-03-10 17:04:45,409 [INFO] watchfiles.main: 1 change detected
+2025-03-10 17:04:45,977 [INFO] watchfiles.main: 1 change detected
+2025-03-10 17:04:46,404 [INFO] __mp_main__: Starting Medical Literature Assistant
+2025-03-10 17:04:46,493 [INFO] watchfiles.main: 4 changes detected
+2025-03-10 17:05:10,637 [INFO] watchfiles.main: 1 change detected
+2025-03-10 17:05:11,700 [INFO] watchfiles.main: 1 change detected
+2025-03-10 17:05:15,026 [INFO] watchfiles.main: 1 change detected
