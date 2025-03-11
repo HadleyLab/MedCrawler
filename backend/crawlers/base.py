@@ -9,6 +9,7 @@ import asyncio
 import logging
 import time
 import json
+import ssl
 from abc import ABC, abstractmethod
 from functools import wraps
 from typing import Dict, Any, Optional, AsyncGenerator, Callable, TypeVar, Union, Set, List
@@ -32,6 +33,11 @@ logger = logging.getLogger(__name__)
 
 T = TypeVar('T')
 
+# Create a custom SSL context that doesn't verify certificates
+# This is necessary for development environments with SSL certificate issues
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
 
 def api_retry(config: Optional[CrawlerConfig] = None) -> Callable:
     """
@@ -202,8 +208,10 @@ class BaseCrawler(ABC):
             Self instance for context manager use
         """
         if not self.session:
-            logger.debug(f"{self.__class__.__name__}: Creating new aiohttp session")
-            self.session = aiohttp.ClientSession(headers=self.headers)
+            logger.debug(f"{self.__class__.__name__}: Creating new aiohttp session with SSL verification disabled")
+            # Use the custom SSL context that doesn't verify certificates
+            conn = aiohttp.TCPConnector(ssl=ssl_context)
+            self.session = aiohttp.ClientSession(headers=self.headers, connector=conn)
         return self
         
     async def __aexit__(self, exc_type, exc_val, exc_tb):
