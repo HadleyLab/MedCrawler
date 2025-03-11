@@ -41,7 +41,7 @@ class ClinicalTrialsCrawler(BaseCrawler):
             Dictionary containing search results
         """
         params = {
-            "query.titles": query,
+            "query.term": query,
             "pageSize": page_size,
             "format": "json"
         }

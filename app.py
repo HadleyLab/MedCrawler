@@ -15,22 +15,24 @@ notification_manager = NotificationManager()
 
 def create_navigation():
     """Create navigation drawer with menu items."""
-    with ui.left_drawer().classes('bg-blue-50').props('bordered'):
+    drawer = ui.left_drawer().classes('bg-blue-50').props('bordered')
+    with drawer:
         ui.button('Home', on_click=lambda: ui.navigate.to('/'), icon='home').props('flat')
         ui.button('Notifications', on_click=lambda: ui.navigate.to('/notifications'), icon='notifications').props('flat')
         ui.button('Literature Search', on_click=lambda: ui.navigate.to('/search'), icon='search').props('flat')
+    return drawer
 
-def create_header():
+def create_header(drawer):
     """Create consistent header with navigation toggle."""
     with ui.header().classes('bg-primary text-white items-center justify-between'):
         with ui.row().classes('w-full items-center'):
-            ui.button(on_click=lambda: ui.left_drawer.toggle(), icon='menu').props('flat color=white')
+            ui.button(on_click=lambda: drawer.toggle(), icon='menu').props('flat color=white')
             ui.label(APP_NAME).classes('text-h6 q-ml-md')
 
 def create_layout():
     """Create main layout with header, navigation, and content area."""
-    create_header()
-    create_navigation()
+    drawer = create_navigation()
+    create_header(drawer)
 
 async def run_task(task, title, success_msg, error_msg):
     """Run a task with notification feedback."""
