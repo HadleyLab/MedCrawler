@@ -1,16 +1,30 @@
-"""Literature search page for querying medical databases."""
+"""
+Literature search page for querying medical databases.
+
+This module provides a user interface for searching medical literature databases,
+including PubMed and ClinicalTrials.gov, with options for filtering by date range
+and displaying results in a tabbed interface.
+"""
 import asyncio
 import logging
 from datetime import datetime
 from nicegui import ui
+
 from backend.crawlers import PubMedCrawler, ClinicalTrialsCrawler
 from backend.utils import NotificationManager
 from config import DEFAULT_CRAWLER_CONFIG
 
 logger = logging.getLogger(__name__)
 
+
 def create_search_page(run_task):
-    """Create the literature search page content."""
+    """
+    Create the literature search page content.
+    
+    Args:
+        run_task: Function to execute tasks with notification feedback
+    """
+    logger.debug("Creating literature search page")
     page_container = ui.column().classes('w-full max-w-3xl mx-auto')
     current_year = datetime.now().year
     year_from = current_year - 5
@@ -20,12 +34,17 @@ def create_search_page(run_task):
     with page_container:
         with ui.card().classes('w-full p-4'):
             ui.label('Medical Literature Search').classes('text-h5 q-mb-md')
+            ui.markdown("""
+            Search across medical literature databases with a unified interface.
+            Enter your search terms and customize your search parameters below.
+            """).classes('q-mb-md')
             
             # Search input with inline controls
             with ui.column().classes('w-full gap-2'):
                 # Search input box
                 search_input = ui.input(
-                    placeholder='Enter search terms...'
+                    placeholder='Enter search terms...',
+                    label='Search Query'
                 ).props('outlined clearable').classes('w-full')
                 
                 # Source selection with inline controls 
@@ -41,7 +60,7 @@ def create_search_page(run_task):
                             ui.label('Max results:').classes('text-body1')
                             max_results = ui.select(
                                 options=[5, 10, 25, 50, 100],
-                                value=5
+                                value=10
                             ).props('outlined dense options-dense').classes('w-24')
                     
                     # Year range inputs
@@ -58,11 +77,17 @@ def create_search_page(run_task):
                     ).props('color=primary icon=search no-caps')
             
             async def validate_and_search():
-                """Validate inputs and execute search if valid."""
+                """
+                Validate inputs and execute search if valid.
+                
+                Shows appropriate notifications for validation errors and search progress.
+                """
                 query = search_input.value.strip()
+                logger.debug(f"Search validation for query: '{query}'")
                 
                 # Check for empty query
                 if not query:
+                    logger.warning("Empty search query submitted")
                     await notifier.notify(
                         "Validation Error",
                         "Please enter a search query",
@@ -74,6 +99,7 @@ def create_search_page(run_task):
                 
                 # Check source selection
                 if not pubmed_check.value and not trials_check.value:
+                    logger.warning("No search sources selected")
                     await notifier.notify(
                         "Validation Error",
                         "Please select at least one source to search",
@@ -83,11 +109,25 @@ def create_search_page(run_task):
                     )
                     return
                 
+                # Validate year range
+                if year_from_input.value > year_to_input.value:
+                    logger.warning(f"Invalid year range: {year_from_input.value}-{year_to_input.value}")
+                    await notifier.notify(
+                        "Validation Error",
+                        "Start year must be earlier than or equal to end year",
+                        type="warning",
+                        icon="warning",
+                        dismissible=True
+                    )
+                    return
+                
                 # Clear previous results and show search is starting
                 results_container.clear()
+                
+                logger.info(f"Starting search for '{query}' between {year_from_input.value}-{year_to_input.value}")
                 await notifier.notify(
                     "Literature Search",
-                    "Starting search...",
+                    f"Starting search for '{query}'...",
                     type="info",
                     timeout=2000,
                     spinner=True
@@ -96,6 +136,8 @@ def create_search_page(run_task):
                 try:
                     # Execute search directly
                     await _execute_search(query)
+                    
+                    # Notify completion
                     await notifier.notify(
                         "Literature Search",
                         "Search completed successfully",
@@ -103,7 +145,7 @@ def create_search_page(run_task):
                         timeout=3000
                     )
                 except Exception as e:
-                    logger.exception("Search failed")
+                    logger.exception(f"Search failed: {str(e)}")
                     await notifier.notify(
                         "Search Error",
                         str(e),
@@ -112,7 +154,15 @@ def create_search_page(run_task):
                     )
             
             async def _execute_search(query: str):
-                """Execute the search operation across selected sources."""
+                """
+                Execute the search operation across selected sources.
+                
+                Args:
+                    query: Search query string
+                    
+                Creates tabbed interface for displaying results and starts parallel searches.
+                """
+                # Clear previous results
                 results_container.clear()
                 
                 with results_container:
@@ -161,6 +211,7 @@ def create_search_page(run_task):
                         total_results = 0
                         
                         if pubmed_check.value:
+                            logger.info(f"Starting PubMed search for '{query}'")
                             tasks.append(_fetch_pubmed_results(
                                 query=query,
                                 run_task=run_task,
@@ -175,6 +226,7 @@ def create_search_page(run_task):
                             ))
                         
                         if trials_check.value:
+                            logger.info(f"Starting Clinical Trials search for '{query}'")
                             tasks.append(_fetch_trials_results(
                                 query=query,
                                 run_task=run_task,
@@ -199,21 +251,42 @@ def create_search_page(run_task):
                                 ui.label(f"Found {total_count} total result{'s' if total_count != 1 else ''}").classes('text-body1')
                             else:
                                 ui.label("No results found").classes('text-body1')
-
+                                
+                        logger.info(f"Search completed with {total_count} total results")
+                        
             # Hook up enter key to validation function
             search_input.on('keydown.enter', validate_and_search)
             
             # Results container
             results_container = ui.element('div').classes('w-full mt-4')
 
+
 async def _fetch_pubmed_results(query: str, run_task, page_container, year_from: int, year_to: int, 
                                results_list, all_list, results_stats, all_stats, max_results: int):
-    """Fetch PubMed results and add them to both source-specific and combined lists."""
+    """
+    Fetch PubMed results and add them to both source-specific and combined lists.
+    
+    Args:
+        query: Search query string
+        run_task: Function to run tasks with notification
+        page_container: UI container for page content
+        year_from: Start year for search range
+        year_to: End year for search range 
+        results_list: UI element to display source-specific results
+        all_list: UI element to display combined results
+        results_stats: UI element for source-specific result statistics
+        all_stats: UI element for combined result statistics
+        max_results: Maximum number of results to fetch
+        
+    Returns:
+        int: Number of results successfully retrieved
+    """
     try:
         notifier = NotificationManager()
         async with PubMedCrawler(notifier, DEFAULT_CRAWLER_CONFIG) as crawler:
             # Add year range to query
             date_query = f"{query} AND {year_from}:{year_to}[dp]"
+            logger.info(f"PubMed query: {date_query}")
             
             # First collect the IDs
             pmids = []
@@ -221,6 +294,15 @@ async def _fetch_pubmed_results(query: str, run_task, page_container, year_from:
                 pmids.append(pmid)
                 if len(pmids) >= max_results:
                     break
+            
+            # Update progress notification
+            logger.info(f"PubMed search found {len(pmids)} results")
+            await notifier.notify(
+                "PubMed Search",
+                f"Found {len(pmids)} result{'s' if len(pmids) != 1 else ''}",
+                type="info",
+                timeout=2000
+            )
             
             if not pmids:
                 with results_stats:
@@ -258,8 +340,18 @@ async def _fetch_pubmed_results(query: str, run_task, page_container, year_from:
             
             # Fetch and display articles one by one
             articles = []
-            for pmid in pmids:
+            for i, pmid in enumerate(pmids):
                 try:
+                    # Update progress notification every few articles
+                    if i % 3 == 0:
+                        await notifier.notify(
+                            "PubMed Progress",
+                            f"Loading article {i+1} of {len(pmids)}",
+                            type="info",
+                            timeout=500,
+                            spinner=True
+                        )
+                    
                     article = await crawler.get_item(pmid)
                     articles.append(article)
                     
@@ -302,6 +394,15 @@ async def _fetch_pubmed_results(query: str, run_task, page_container, year_from:
                                 ui.badge('PubMed', color='primary').classes('q-mr-sm')
                                 ui.label(f"Error loading article {pmid}: {str(e)}").classes('text-negative')
             
+            # Final completion notification
+            if articles:
+                await notifier.notify(
+                    "PubMed Results",
+                    f"Successfully loaded {len(articles)} of {len(pmids)} articles",
+                    type="positive",
+                    timeout=3000
+                )
+            
             return len(articles)
                 
     except Exception as e:
@@ -319,14 +420,33 @@ async def _fetch_pubmed_results(query: str, run_task, page_container, year_from:
         )
         return 0
 
+
 async def _fetch_trials_results(query: str, run_task, page_container, year_from: int, year_to: int,
                                results_list, all_list, results_stats, all_stats, max_results: int):
-    """Fetch Clinical Trials results and add them to both source-specific and combined lists."""
+    """
+    Fetch Clinical Trials results and add them to both source-specific and combined lists.
+    
+    Args:
+        query: Search query string
+        run_task: Function to run tasks with notification
+        page_container: UI container for page content
+        year_from: Start year for search range
+        year_to: End year for search range 
+        results_list: UI element to display source-specific results
+        all_list: UI element to display combined results
+        results_stats: UI element for source-specific result statistics
+        all_stats: UI element for combined result statistics
+        max_results: Maximum number of results to fetch
+        
+    Returns:
+        int: Number of results successfully retrieved
+    """
     try:
         notifier = NotificationManager()
         async with ClinicalTrialsCrawler(notifier, DEFAULT_CRAWLER_CONFIG) as crawler:
             # Format the date range according to ClinicalTrials.gov API requirements
             date_query = f"{query} AREA[LastUpdatePostDate]RANGE[{year_from}-01-01,{year_to}-12-31]"
+            logger.info(f"Clinical Trials query: {date_query}")
             
             # First collect the IDs
             nctids = []
@@ -334,6 +454,15 @@ async def _fetch_trials_results(query: str, run_task, page_container, year_from:
                 nctids.append(nctid)
                 if len(nctids) >= max_results:
                     break
+            
+            # Update progress notification
+            logger.info(f"Clinical Trials search found {len(nctids)} results")
+            await notifier.notify(
+                "Clinical Trials Search",
+                f"Found {len(nctids)} result{'s' if len(nctids) != 1 else ''}",
+                type="info",
+                timeout=2000
+            )
                 
             if not nctids:
                 with results_stats:
@@ -371,8 +500,18 @@ async def _fetch_trials_results(query: str, run_task, page_container, year_from:
             
             # Fetch and display trials one by one
             trials = []
-            for nctid in nctids:
+            for i, nctid in enumerate(nctids):
                 try:
+                    # Update progress notification every few trials
+                    if i % 3 == 0:
+                        await notifier.notify(
+                            "Clinical Trials Progress",
+                            f"Loading trial {i+1} of {len(nctids)}",
+                            type="info",
+                            timeout=500,
+                            spinner=True
+                        )
+                    
                     trial = await crawler.get_item(nctid)
                     trials.append(trial)
                     
@@ -490,6 +629,15 @@ async def _fetch_trials_results(query: str, run_task, page_container, year_from:
                                 ui.badge('Clinical Trials', color='secondary').classes('q-mr-sm')
                                 ui.label(f"Error loading trial {nctid}: {str(e)}").classes('text-negative')
             
+            # Final completion notification
+            if trials:
+                await notifier.notify(
+                    "Clinical Trials Results",
+                    f"Successfully loaded {len(trials)} of {len(nctids)} trials",
+                    type="positive",
+                    timeout=3000
+                )
+                
             return len(trials)
                 
     except Exception as e:

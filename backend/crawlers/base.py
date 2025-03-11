@@ -1,4 +1,10 @@
-"""Base crawler functionality."""
+"""
+Base crawler functionality for medical literature data sources.
+
+This module provides the foundation for all literature crawlers,
+with common functionality for API requests, caching, error handling,
+and rate limiting compliance.
+"""
 import asyncio
 import logging
 import time
@@ -17,15 +23,26 @@ from tenacity import (
     after_log,
     RetryError
 )
+
 from backend.utils.notification_manager import NotificationManager
 from config import CrawlerConfig, DEFAULT_CRAWLER_CONFIG
 from .exceptions import APIError, RateLimitError
 
 logger = logging.getLogger(__name__)
+
 T = TypeVar('T')
 
+
 def api_retry(config: Optional[CrawlerConfig] = None) -> Callable:
-    """Retry decorator for API calls with exponential backoff."""
+    """
+    Retry decorator for API calls with exponential backoff.
+    
+    Args:
+        config: Optional crawler configuration override
+        
+    Returns:
+        Decorated function with retry behavior
+    """
     cfg = config or DEFAULT_CRAWLER_CONFIG
     
     return retry(
@@ -43,20 +60,27 @@ def api_retry(config: Optional[CrawlerConfig] = None) -> Callable:
         reraise=True
     )
 
+
 class TimedCache:
-    """Cache with time-based expiration for items."""
+    """
+    Cache with time-based expiration for items.
+    
+    Provides a simple cache mechanism with TTL expiration for reducing
+    unnecessary API calls for frequently accessed data.
+    """
     
     def __init__(self, ttl_seconds: int = 3600, maxsize: int = 1000):
         """
         Initialize a timed cache.
         
         Args:
-            ttl_seconds: Time-to-live in seconds
-            maxsize: Maximum cache size
+            ttl_seconds: Time-to-live in seconds for cache items
+            maxsize: Maximum cache size before oldest items are evicted
         """
         self.ttl = ttl_seconds
         self.maxsize = maxsize
         self.cache: Dict[str, tuple[Any, float]] = {}
+        logger.debug(f"TimedCache initialized: TTL={ttl_seconds}s, maxsize={maxsize}")
         
     def get(self, key: str) -> Optional[Any]:
         """
@@ -73,9 +97,12 @@ class TimedCache:
             
         value, timestamp = self.cache[key]
         if time.time() - timestamp > self.ttl:
+            # Expired item
+            logger.debug(f"Cache item expired: {key}")
             del self.cache[key]
             return None
             
+        logger.debug(f"Cache hit: {key}")
         return value
         
     def set(self, key: str, value: Any) -> None:
@@ -86,15 +113,20 @@ class TimedCache:
             key: Cache key
             value: Value to cache
         """
+        # Evict oldest item if we've reached max size
         if len(self.cache) >= self.maxsize and key not in self.cache:
             oldest_key = min(self.cache.keys(), key=lambda k: self.cache[k][1])
+            logger.debug(f"Cache evicting oldest item: {oldest_key}")
             del self.cache[oldest_key]
             
         self.cache[key] = (value, time.time())
+        logger.debug(f"Cache set: {key}")
         
     def clear(self) -> None:
         """Clear all cache entries."""
+        logger.debug(f"Clearing cache with {len(self.cache)} items")
         self.cache.clear()
+
 
 def async_timed_cache(ttl_seconds: int = 3600, maxsize: int = 1000):
     """
@@ -108,17 +140,20 @@ def async_timed_cache(ttl_seconds: int = 3600, maxsize: int = 1000):
         Decorated function with timed caching
     """
     cache = TimedCache(ttl_seconds=ttl_seconds, maxsize=maxsize)
+    logger.debug(f"Creating async_timed_cache decorator: TTL={ttl_seconds}s, maxsize={maxsize}")
     
     def decorator(func):
         @wraps(func)
         async def wrapper(*args, **kwargs):
-            key = str((args, frozenset(kwargs.items())))
+            # Create a cache key from function arguments
+            key = str((func.__name__, args, frozenset(kwargs.items())))
             
             cached_value = cache.get(key)
-            if (cached_value is not None):
-                logger.debug(f"Cache hit for {func.__name__}({args}, {kwargs})")
+            if cached_value is not None:
+                logger.debug(f"Cache hit for {func.__name__}")
                 return cached_value
-                
+            
+            logger.debug(f"Cache miss for {func.__name__}, fetching data")
             result = await func(*args, **kwargs)
             cache.set(key, result)
             return result
@@ -126,8 +161,14 @@ def async_timed_cache(ttl_seconds: int = 3600, maxsize: int = 1000):
         return wrapper
     return decorator
 
+
 class BaseCrawler(ABC):
-    """Base class for medical literature crawlers."""
+    """
+    Base class for medical literature crawlers.
+    
+    Provides common functionality for making API requests, handling errors,
+    managing rate limits, and processing responses.
+    """
     
     def __init__(
         self,
@@ -135,7 +176,14 @@ class BaseCrawler(ABC):
         base_url: str,
         config: Optional[CrawlerConfig] = None
     ):
-        """Initialize a crawler with a base URL."""
+        """
+        Initialize a crawler with a base URL and configuration.
+        
+        Args:
+            notification_manager: Manager for displaying user notifications
+            base_url: Base API URL for this crawler
+            config: Optional crawler configuration
+        """
         self.notification_manager = notification_manager
         self.base_url = base_url.rstrip('/')  # Remove trailing slash if present
         self.config = config or DEFAULT_CRAWLER_CONFIG
@@ -143,17 +191,32 @@ class BaseCrawler(ABC):
         self.headers = {"User-Agent": self.config.user_agent}
         
         # Setup debug mode based on environment
-        self.debug_mode = logger.level <= logging.DEBUG
-
+        self.debug_mode = logger.getEffectiveLevel() <= logging.DEBUG
+        logger.info(f"Initialized {self.__class__.__name__} with base URL: {self.base_url}")
+    
     async def __aenter__(self):
-        """Setup resources for async context."""
+        """
+        Setup resources for async context.
+        
+        Returns:
+            Self instance for context manager use
+        """
         if not self.session:
+            logger.debug(f"{self.__class__.__name__}: Creating new aiohttp session")
             self.session = aiohttp.ClientSession(headers=self.headers)
         return self
         
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        """Cleanup resources when exiting async context."""
+        """
+        Cleanup resources when exiting async context.
+        
+        Args:
+            exc_type: Exception type if an exception was raised
+            exc_val: Exception value if an exception was raised
+            exc_tb: Exception traceback if an exception was raised
+        """
         if self.session:
+            logger.debug(f"{self.__class__.__name__}: Closing aiohttp session")
             await self.session.close()
             self.session = None
             
@@ -164,9 +227,23 @@ class BaseCrawler(ABC):
         params: Optional[Dict] = None,
         error_prefix: str = "API Error"
     ) -> Union[Dict[str, Any], str]:
-        """Make HTTP request with retry logic and notification handling."""
+        """
+        Make HTTP request with retry logic and notification handling.
+        
+        Args:
+            endpoint: API endpoint path
+            params: Query parameters for the request
+            error_prefix: Prefix for error messages
+            
+        Returns:
+            Parsed JSON response or raw text
+            
+        Raises:
+            APIError: For HTTP errors or API-specific errors
+            RateLimitError: When rate limits are exceeded
+        """
         if not self.session:
-            raise RuntimeError("Crawler must be used within async context")
+            raise RuntimeError(f"{self.__class__.__name__} must be used within async context")
         
         # Add a small delay between requests to avoid hitting rate limits
         await asyncio.sleep(self.config.min_interval)
@@ -177,14 +254,17 @@ class BaseCrawler(ABC):
         
         # Debug logging    
         logger.info(f"Making API request to: {url}")
-        logger.info(f"With parameters: {json.dumps(params, indent=2)}")
+        logger.debug(f"With parameters: {json.dumps(params or {}, indent=2)}")
             
         try:
             async with self.session.get(url, params=params, timeout=30) as response:
                 status = response.status
-                logger.info(f"Response status: {status}")
-                logger.info(f"Response headers: {dict(response.headers)}")
+                logger.debug(f"Response status: {status}")
                 
+                if self.debug_mode:
+                    logger.debug(f"Response headers: {dict(response.headers)}")
+                
+                # Handle rate limiting
                 if response.status == 429:
                     retry_after = response.headers.get("Retry-After", "60")
                     message = f"Rate limit exceeded: {await response.text()}"
@@ -196,6 +276,7 @@ class BaseCrawler(ABC):
                     )
                     raise RateLimitError(message)
                 
+                # Handle common HTTP errors
                 if status == 404:
                     message = f"Resource not found: {await response.text()}"
                     logger.error(message)
@@ -208,7 +289,7 @@ class BaseCrawler(ABC):
                     await self.notification_manager.notify(
                         error_prefix,
                         message,
-                        type="error"
+                        type="negative"
                     )
                     raise APIError(message)
                 
@@ -217,12 +298,15 @@ class BaseCrawler(ABC):
                 try:
                     if 'application/json' in content_type or endpoint.endswith('json'):
                         response_data = await response.json()
-                        # Log JSON response preview
-                        logger.info(f"JSON Response preview: {json.dumps(response_data, indent=2)[:500]}...")
+                        if self.debug_mode:
+                            # Log JSON response preview in debug mode only
+                            preview = json.dumps(response_data, indent=2)[:500]
+                            logger.debug(f"JSON Response preview: {preview}...")
                     else:
                         response_data = await response.text()
-                        # Log text response preview
-                        logger.info(f"Text Response preview: {response_data[:500]}...")
+                        if self.debug_mode:
+                            # Log text response preview in debug mode only
+                            logger.debug(f"Text Response preview: {response_data[:500]}...")
                     
                     return response_data
                 except json.JSONDecodeError as e:
@@ -237,7 +321,7 @@ class BaseCrawler(ABC):
             await self.notification_manager.notify(
                 error_prefix,
                 message,
-                type="error"
+                type="negative"
             )
             raise APIError(message)
             
@@ -247,7 +331,7 @@ class BaseCrawler(ABC):
             await self.notification_manager.notify(
                 error_prefix,
                 message,
-                type="error"
+                type="negative"
             )
             raise APIError(message)
 
@@ -308,11 +392,23 @@ class BaseCrawler(ABC):
         pass
             
     async def get_item(self, item_id: str) -> Dict[str, Any]:
-        """Get detailed information for a specific item."""
+        """
+        Get detailed information for a specific item.
+        
+        Args:
+            item_id: ID of the item to retrieve
+            
+        Returns:
+            Dictionary containing item metadata
+            
+        Raises:
+            APIError: If the API request fails
+        """
         endpoint = await self.get_metadata_endpoint()
         params = await self.get_metadata_request_params(item_id)
         
         try:
+            logger.info(f"Fetching item {item_id}")
             response_data = await self._make_request(
                 endpoint, 
                 params=params,
@@ -325,28 +421,44 @@ class BaseCrawler(ABC):
     
     async def get_items_batch(
         self,
-        item_ids: list[str],
+        item_ids: List[str],
         batch_size: Optional[int] = None
-    ) -> list[Dict[str, Any]]:
-        """Get multiple items in parallel batches."""
+    ) -> List[Dict[str, Any]]:
+        """
+        Get multiple items in parallel batches.
+        
+        Args:
+            item_ids: List of item IDs to retrieve
+            batch_size: Optional override for batch size
+            
+        Returns:
+            List of metadata dictionaries for successfully retrieved items
+        """
         batch_size = batch_size or self.config.default_batch_size
         results = []
         total = len(item_ids)
         
+        logger.info(f"Fetching {total} items in batches of {batch_size}")
+        
         for i in range(0, total, batch_size):
             batch = item_ids[i:i + batch_size]
+            batch_num = i // batch_size + 1
+            total_batches = (total - 1) // batch_size + 1
+            
+            # Create tasks for this batch
             tasks = [self.get_item(item_id) for item_id in batch]
             
-            logger.info(
-                f"Fetching batch {i//batch_size + 1}/{(total-1)//batch_size + 1} ({len(batch)} items)"
-            )
+            # Log batch progress
+            logger.info(f"Fetching batch {batch_num}/{total_batches} ({len(batch)} items)")
             
+            # Notify user of progress
             await self.notification_manager.notify(
                 "Batch Progress",
-                f"Fetching items {i + 1}-{min(i + batch_size, total)} of {total}",
+                f"Fetching items {i + 1}-{min(i + batch_size, total)} of {total} ({batch_num}/{total_batches})",
                 type="info"
             )
             
+            # Execute batch requests in parallel
             batch_results = await asyncio.gather(*tasks, return_exceptions=True)
             
             # Filter out exceptions and log them
@@ -355,5 +467,17 @@ class BaseCrawler(ABC):
                     logger.error(f"Error fetching item {batch[j]}: {result}")
                 else:
                     results.append(result)
+            
+            # Update on batch completion
+            logger.info(f"Completed batch {batch_num}/{total_batches}: " 
+                       f"{len([r for r in batch_results if not isinstance(r, Exception)])} successful, "
+                       f"{len([r for r in batch_results if isinstance(r, Exception)])} failed")
                     
+        # Final notification of overall results
+        await self.notification_manager.notify(
+            "Batch Processing Complete", 
+            f"Retrieved {len(results)} of {total} items successfully",
+            type="positive"
+        )
+        
         return results
