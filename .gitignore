@@ -1,36 +1,3 @@
-# Dependencies
-node_modules/
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-
-# Environment
-.env
-.env.local
-.env.*.local
-
-# Build output
-dist/
-build/
-
-# IDE files
-.idea/
-.vscode/
-*.sublime-project
-*.sublime-workspace
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Demo files
-demos/
-demo/
-*.demo.*
-demo-data/
-demo.config.js
-demo-credentials.json
-
 # Python
 __pycache__/
 *.py[cod]
@@ -38,6 +5,51 @@ __pycache__/
 *.so
 .Python
 .pytest_cache/
-htmlcov/
 .coverage
 .coverage.*
+
+# Testing and Coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+.env.local
+.env.*
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and local files
+*.log
+app.log
+.DS_Store
+Thumbs.db
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Demo and test data
+demos/
+demo/
+*.demo.*
+demo-data/
+demo.config.js
+demo-credentials.json
