@@ -67,7 +67,7 @@ def search_page():
     """Literature search page route."""
     create_layout()
     with ui.column().classes('w-full max-w-3xl mx-auto p-4'):
-        create_search_page(notification_manager)
+        create_search_page(run_task)
 
 if __name__ in {"__main__", "__mp_main__"}:
     logger.info(f"Starting {APP_NAME}")
