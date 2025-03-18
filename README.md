@@ -1,95 +1,170 @@
 # MedCrawler
 
-MedCrawler is a medical literature assistant that helps healthcare professionals and researchers crawl, extract, and monitor medical information from various online sources including PubMed and ClinicalTrials.gov.
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/MedCrawler.git
-cd MedCrawler
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Optional: Create a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-## Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```
-# Optional API credentials for increased rate limits
-PUBMED_EMAIL=your.email@example.com
-PUBMED_API_KEY=your_api_key_if_you_have_one
-
-# Logging configuration
-LOG_LEVEL=INFO  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
-```
-
-## Running the Application
-
-### Main Application
-
-The main application provides a web interface for searching medical literature:
-
-```bash
-python app.py
-```
-
-This will start the web server, and you can access the application at http://localhost:8080 in your browser.
-
-### Using the Crawlers Directly
-
-You can also use the crawlers directly from the demos directory:
-
-```bash
-# Navigate to the demos directory
-cd demos/crawlers
-
-# Run the crawler demo
-python crawler.py --source pubmed --query "diabetes treatment" --max_results 10
-
-# For ClinicalTrials.gov
-python crawler.py --source clinical_trials --query "cancer immunotherapy" --max_results 10
-```
-
-Available options:
-- `--source`: Specify the data source (`pubmed` or `clinical_trials`)
-- `--query`: Your search query
-- `--max_results`: Maximum number of results to retrieve
-- `--year_from`: Filter by start year 
-- `--year_to`: Filter by end year
-- `--output`: Output file path (JSON format)
+MedCrawler is a Python package that provides asynchronous interfaces for crawling medical literature databases. It currently supports crawling data from PubMed (via NCBI E-utilities) and ClinicalTrials.gov (via their API v2).
 
 ## Features
 
-- **Unified Search Interface**: Search across multiple medical databases including PubMed and ClinicalTrials.gov
-- **Year-Based Filtering**: Filter results by publication date range
-- **Real-time Notifications**: Progress tracking for long-running search operations
-- **Tabbed Results View**: View results in a structured, tabbed interface
-- **Abstract Previews**: Read article abstracts without leaving the application
+- Asynchronous HTTP requests for efficient data retrieval
+- Built-in rate limiting and retry strategies with exponential backoff
+- Caching with time-based expiration
+- Batch processing capabilities
+- Comprehensive error handling
+- Date-based filtering for both PubMed and ClinicalTrials.gov
+- Well-defined abstract interfaces for easy extension to other sources
+
+## Installation
+
+Clone this repository and install the required dependencies:
+
+```bash
+git clone https://github.com/yourusername/MedCrawler.git
+cd MedCrawler
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Basic Example
+
+```python
+import asyncio
+from crawlers import PubMedCrawler
+
+async def main():
+    async with PubMedCrawler() as crawler:
+        # Search for articles
+        async for pmid in crawler.search("cancer treatment", max_results=5):
+            # Fetch metadata for each article
+            metadata = await crawler.get_item(pmid)
+            print(f"Title: {metadata['title']}")
+            print(f"Authors: {', '.join(metadata['authors'])}")
+            print(f"Abstract: {metadata['abstract'][:100]}...")
+            print("\n" + "-" * 50 + "\n")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+### Command-Line Demo
+
+The package includes a demonstration script that showcases its functionality:
+
+```bash
+python main.py --source pubmed --query "diabetes" --max 10
+python main.py --source clinicaltrials --query "covid" --max 5 --recent
+```
+
+Available options:
+- `--source`: `pubmed`, `clinicaltrials`, or `all` (default: `all`)
+- `--query`: Search query string (default: `cancer`)
+- `--max`: Maximum number of results (default: `5`)
+- `--from-date`: Start date for filtering results (format depends on source)
+- `--to-date`: End date for filtering results (format depends on source)
+- `--recent`: Short for setting from-date to 90 days ago
+
+## API Reference
+
+### Base Crawler
+
+The `BaseCrawler` class provides core functionality used by all crawler implementations:
+
+```python
+from crawlers import CrawlerConfig
+from crawlers.base import BaseCrawler
+
+# Create a custom configuration
+config = CrawlerConfig(
+    user_agent="YourApp/1.0",
+    email="your@email.com",
+    api_key="your-api-key",  # Optional
+    min_interval=0.5  # Seconds between requests
+)
+
+# Use the crawler with the configuration
+async with YourCrawler(config) as crawler:
+    # Your code here
+```
+
+### PubMed Crawler
+
+```python
+from crawlers import PubMedCrawler
+
+async with PubMedCrawler() as crawler:
+    # Search with date filtering (YYYY/MM/DD format)
+    async for pmid in crawler.search(
+        query="cancer treatment",
+        max_results=10,
+        from_date="2023/01/01",
+        to_date="2023/12/31"
+    ):
+        metadata = await crawler.get_item(pmid)
+        
+    # Batch retrieval for efficiency
+    pmids = ["12345678", "23456789", "34567890"]
+    results = await crawler.get_items_batch(pmids)
+```
+
+### ClinicalTrials Crawler
+
+```python
+from crawlers import ClinicalTrialsCrawler
+
+async with ClinicalTrialsCrawler() as crawler:
+    # Search with date filtering (YYYY-MM-DD format)
+    async for nct_id in crawler.search(
+        query="covid vaccine",
+        max_results=10,
+        from_date="2023-01-01",
+        to_date="2023-12-31"
+    ):
+        metadata = await crawler.get_item(nct_id)
+```
+
+## Extending
+
+You can implement your own crawler by extending the `BaseCrawler` class:
+
+```python
+from crawlers.base import BaseCrawler
+from typing import Dict, Any, AsyncGenerator, Set, Optional
+
+class YourCrawler(BaseCrawler):
+    def __init__(self, config=None):
+        super().__init__("https://your-api-base-url.com", config)
+    
+    async def search(
+        self, 
+        query: str, 
+        max_results: Optional[int] = None,
+        old_item_ids: Optional[Set[str]] = None,
+        from_date: Optional[str] = None,
+        to_date: Optional[str] = None
+    ) -> AsyncGenerator[str, None]:
+        # Implementation here
+    
+    async def get_metadata_request_params(self, item_id: str) -> Dict:
+        # Implementation here
+    
+    async def get_metadata_endpoint(self) -> str:
+        # Implementation here
+    
+    def extract_metadata(self, response_data: Any) -> Dict[str, Any]:
+        # Implementation here
+```
 
 ## Development
 
-### Testing
-
-Run the test suite with:
+### Running Tests
 
 ```bash
 pytest
 ```
 
-For coverage report:
+### Code Style
 
-```bash
-pytest --cov=backend --cov-report=html
-```
+This project follows PEP 8 style guidelines.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+[MIT License](LICENSE)
