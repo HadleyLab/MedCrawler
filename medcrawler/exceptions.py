@@ -1,5 +1,5 @@
 """
-Custom exceptions for the medical literature crawlers.
+Custom exceptions for the medical literature medcrawler.
 
 This module defines the exception hierarchy for the MedCrawler package,
 providing specific error types for different failure scenarios.

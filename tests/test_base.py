@@ -8,9 +8,9 @@ batch processing, and error handling.
 import asyncio
 import pytest
 
-from crawlers.base import TimedCache
-from crawlers.clinical_trials import ClinicalTrialsCrawler
-from crawlers.exceptions import APIError, RateLimitError
+from medcrawler.base import TimedCache
+from medcrawler.clinical_trials import ClinicalTrialsCrawler
+from medcrawler.exceptions import APIError, RateLimitError
 
 
 @pytest.mark.asyncio

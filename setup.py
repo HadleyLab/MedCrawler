@@ -44,7 +44,7 @@ setup(
     install_requires=requirements,
     entry_points={
         'console_scripts': [
-            'medcrawler=crawlers.demo:main',
+            'medcrawler=medcrawler.demo:main',
         ],
     },
 )

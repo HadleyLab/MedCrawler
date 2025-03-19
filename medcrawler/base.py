@@ -1,5 +1,5 @@
 """
-Base crawler module with core functionality for medical literature crawlers.
+Base crawler module with core functionality for medical literature medcrawler.
 
 This module provides the foundation for all crawler implementations, including:
 - HTTP request handling with retry logic
@@ -164,7 +164,7 @@ def async_timed_cache(ttl_seconds: int = 3600, maxsize: int = 1000):
 
 
 class BaseCrawler(ABC):
-    """Base class for medical literature crawlers.
+    """Base class for medical literature medcrawler.
     
     Provides common functionality for making API requests, handling errors,
     managing rate limits, and processing responses.

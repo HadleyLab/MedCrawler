@@ -8,8 +8,8 @@ import pytest
 import asyncio
 from datetime import datetime, timedelta
 
-from crawlers.clinical_trials import ClinicalTrialsCrawler
-from crawlers.exceptions import APIError
+from medcrawler.clinical_trials import ClinicalTrialsCrawler
+from medcrawler.exceptions import APIError
 
 # Mark all tests in this module as asyncio
 pytestmark = pytest.mark.asyncio
@@ -183,7 +183,7 @@ async def test_date_formats(test_config):
     """Test various date format handling with real searches.
     
     Verifies that different date formats and special values (MIN/MAX)
-    are correctly handled in search queries.
+    are correctly handled in search queries, including historical dates.
     
     Args:
         test_config: Test configuration fixture
@@ -201,18 +201,34 @@ async def test_date_formats(test_config):
         
         assert len(results_min_max) == 2
         
-        # Test with specific dates
-        results_dates = []
+        # Test with specific dates from recent period
+        results_recent = []
         async for nct_id in crawler.search(
             "cancer",
             max_results=2,
             from_date="2020-01-01",
             to_date="2023-12-31"
         ):
-            results_dates.append(nct_id)
+            results_recent.append(nct_id)
         
-        assert len(results_dates) == 2
-        assert set(results_min_max) != set(results_dates)  # Should be different studies
+        assert len(results_recent) == 2
+        
+        # Test with historical dates from 2005
+        results_historical = []
+        async for nct_id in crawler.search(
+            "cancer",
+            max_results=2,
+            from_date="2005-01-01",
+            to_date="2005-12-31"
+        ):
+            results_historical.append(nct_id)
+        
+        assert len(results_historical) == 2
+        
+        # Verify all result sets are different
+        assert set(results_min_max) != set(results_recent)
+        assert set(results_recent) != set(results_historical)
+        assert set(results_min_max) != set(results_historical)
 
 
 async def test_metadata_fields(test_config):

@@ -8,8 +8,8 @@ import pytest
 import asyncio
 from datetime import datetime, timedelta
 
-from crawlers.pubmed import PubMedCrawler
-from crawlers.exceptions import APIError
+from medcrawler.pubmed import PubMedCrawler
+from medcrawler.exceptions import APIError
 
 # Mark all tests in this module as asyncio
 pytestmark = pytest.mark.asyncio
@@ -181,37 +181,54 @@ async def test_date_formats(test_config):
     """Test various date format handling with real searches.
     
     Verifies that different date ranges return appropriate results
-    and that date filtering works correctly.
+    and that date filtering works correctly, including very old historical dates.
     
     Args:
         test_config: Test configuration fixture
     """
     async with PubMedCrawler(test_config) as crawler:
-        # Test recent dates
-        results_recent = []
+        # Test recent dates (last month of current year)
         current_year = datetime.now().year
+        current_month = datetime.now().month
+        results_recent = []
         async for pmid in crawler.search(
             "covid",
             max_results=2,
-            from_date=f"{current_year}/01/01",
+            from_date=f"{current_year}/{max(1, current_month-1):02d}/01",
             to_date=datetime.now().strftime("%Y/%m/%d")
         ):
             results_recent.append(pmid)
         
         assert len(results_recent) == 2
         
-        # Test historical dates (using a more recent historical period)
-        results_historical = []
+        # Test mid historical dates (2000s)
+        results_2000 = []
         async for pmid in crawler.search(
             "cancer chemotherapy",
             max_results=2,
             from_date="2000/01/01",
             to_date="2000/12/31"
         ):
-            results_historical.append(pmid)
+            results_2000.append(pmid)
         
-        assert len(results_historical) == 2
-        assert set(results_recent) != set(results_historical)  # Should be different articles
+        assert len(results_2000) == 2
+        
+        # Test old historical dates (1960s)
+        results_1960 = []
+        async for pmid in crawler.search(
+            "penicillin",  # Topic relevant to that era
+            max_results=2,
+            from_date="1960/01/01",
+            to_date="1969/12/31"
+        ):
+            results_1960.append(pmid)
+        
+        assert len(results_1960) == 2
+        
+        # Verify all result sets are different
+        assert set(results_recent) != set(results_2000)  # Should be different articles
+        assert set(results_2000) != set(results_1960)  # Should be different articles
+        assert set(results_recent) != set(results_1960)  # Should be different articles
 
 
 async def test_metadata_fields(test_config):

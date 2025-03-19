@@ -1,5 +1,5 @@
 """
-Configuration module for medical literature crawlers.
+Configuration module for medical literature medcrawler.
 
 This module provides configuration settings for crawler classes through
 a dataclass-based approach, defining default values and types for all

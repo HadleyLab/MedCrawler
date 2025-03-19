@@ -9,7 +9,7 @@ import pytest
 import asyncio
 import logging
 
-from crawlers.config import CrawlerConfig
+from medcrawler.config import CrawlerConfig
 
 
 @pytest.fixture(autouse=True)

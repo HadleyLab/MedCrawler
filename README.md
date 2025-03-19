@@ -70,7 +70,7 @@ The `BaseCrawler` class provides core functionality used by all crawler implemen
 
 ```python
 from crawlers import CrawlerConfig
-from crawlers.base import BaseCrawler
+from medcrawler.base import BaseCrawler
 
 # Create a custom configuration
 config = CrawlerConfig(
@@ -126,7 +126,7 @@ async with ClinicalTrialsCrawler() as crawler:
 You can implement your own crawler by extending the `BaseCrawler` class:
 
 ```python
-from crawlers.base import BaseCrawler
+from medcrawler.base import BaseCrawler
 from typing import Dict, Any, AsyncGenerator, Set, Optional
 
 class YourCrawler(BaseCrawler):

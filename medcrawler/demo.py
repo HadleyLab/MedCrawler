@@ -1,5 +1,5 @@
 """
-Demonstration module for the medical literature crawlers.
+Demonstration module for the medical literature medcrawler.
 
 This module provides demonstration utilities for the medical literature crawlers,
 including command-line interface and sample usage patterns for the crawler classes.
