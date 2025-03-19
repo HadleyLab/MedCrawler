@@ -26,11 +26,13 @@ from tenacity import (
     after_log,
     RetryError
 )
-from .config import CrawlerConfig, DEFAULT_CRAWLER_CONFIG
-from .exceptions import APIError, RateLimitError
+
+from medcrawler.config import CrawlerConfig, DEFAULT_CRAWLER_CONFIG
+from medcrawler.exceptions import APIError, RateLimitError
 
 # Configure logger
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 T = TypeVar('T')
 
 # Create a custom SSL context that doesn't verify certificates
@@ -48,12 +50,24 @@ def api_retry(config: Optional[CrawlerConfig] = None) -> Callable:
     
     Returns:
         A decorated function that will retry on specified exceptions.
+        
+    The retry strategy uses exponential backoff with the following behavior:
+    - Initial wait time is retry_wait seconds
+    - Each retry multiplies the wait time by retry_exponential_base
+    - Wait time is capped at retry_max_wait seconds
+    - Retries up to max_retries times
+    - Only retries on specific exceptions (HTTP errors, timeouts, etc.)
+    - Does not retry on RateLimitError (handled separately)
     """
     cfg = config or DEFAULT_CRAWLER_CONFIG
     
     return retry(
         stop=stop_after_attempt(cfg.max_retries),
-        wait=wait_exponential(multiplier=cfg.retry_wait, min=cfg.retry_wait, max=cfg.retry_wait * 10),
+        wait=wait_exponential(
+            multiplier=cfg.retry_wait,
+            exp_base=cfg.retry_exponential_base,
+            max=cfg.retry_max_wait
+        ),
         retry=retry_if_exception_type((
             aiohttp.ClientError, 
             asyncio.TimeoutError, 
@@ -131,34 +145,59 @@ class TimedCache:
         self.cache.clear()
 
 
+# Module-level cache instances
+_caches: Dict[str, TimedCache] = {}
+
 def async_timed_cache(ttl_seconds: int = 3600, maxsize: int = 1000):
-    """Cache decorator for async functions with TTL expiration.
-    
-    Args:
-        ttl_seconds: Time-to-live for cache entries in seconds
-        maxsize: Maximum number of items to store in the cache
-        
-    Returns:
-        A decorator that caches the results of async function calls
-    """
-    cache = TimedCache(ttl_seconds=ttl_seconds, maxsize=maxsize)
-    logger.debug(f"Creating async_timed_cache decorator: TTL={ttl_seconds}s, maxsize={maxsize}")
-    
+    """Cache decorator for async functions with TTL expiration."""
     def decorator(func):
+        # Use function's qualified name as cache key prefix
+        cache_key_prefix = f"{func.__module__}.{func.__qualname__}"
+        if cache_key_prefix not in _caches:
+            _caches[cache_key_prefix] = TimedCache(ttl_seconds=ttl_seconds, maxsize=maxsize)
+        cache = _caches[cache_key_prefix]
+        logger.debug(f"Using cache for {cache_key_prefix}: TTL={ttl_seconds}s, maxsize={maxsize}")
+        
         @wraps(func)
         async def wrapper(*args, **kwargs):
-            key = str((func.__name__, args, frozenset(kwargs.items())))
+            # Optimized key generation - only include essential components
+            if args and hasattr(args[0], '__class__'):
+                instance = args[0]
+                # For API requests, the key parts that matter are:
+                # 1. The crawler class (determines API)
+                # 2. The function name (determines endpoint)
+                # 3. The actual parameters that affect the request
+                key_parts = [
+                    instance.__class__.__name__,
+                    func.__name__
+                ]
+                if len(args) > 1:  # Add non-self args
+                    key_parts.extend(str(arg) for arg in args[1:])
+                if kwargs:  # Add kwargs in sorted order for consistency
+                    key_parts.extend(f"{k}={v}" for k, v in sorted(kwargs.items()))
+                key = ":".join(key_parts)
+            else:
+                # For non-instance methods, use all args and kwargs
+                key_parts = [func.__name__]
+                if args:
+                    key_parts.extend(str(arg) for arg in args)
+                if kwargs:
+                    key_parts.extend(f"{k}={v}" for k, v in sorted(kwargs.items()))
+                key = ":".join(key_parts)
+            
+            logger.debug(f"Cache key: {key}")
             
             cached_value = cache.get(key)
-            if (cached_value is not None):
-                logger.debug(f"Cache hit for {func.__name__}")
+            if cached_value is not None:
+                logger.debug(f"Cache hit for key: {key}")
                 return cached_value
             
-            logger.debug(f"Cache miss for {func.__name__}, fetching data")
+            logger.debug(f"Cache miss for key: {key}, fetching data")
             result = await func(*args, **kwargs)
             cache.set(key, result)
             return result
             
+        wrapper.cache = cache  # Expose cache object for testing
         return wrapper
     return decorator
 
@@ -172,6 +211,9 @@ class BaseCrawler(ABC):
     This abstract class defines the core interface that all crawler
     implementations must follow.
     """
+    
+    # Class-level variable to track last request time across all instances
+    _last_request_time = 0.0
     
     def __init__(
         self,
@@ -242,7 +284,15 @@ class BaseCrawler(ABC):
         if not self.session:
             raise RuntimeError(f"{self.__class__.__name__} must be used within async context")
         
-        await asyncio.sleep(self.config.min_interval)
+        # Calculate time since last request and sleep if needed
+        now = time.time()
+        time_since_last = now - self._last_request_time
+        
+        # Update last request time before sleeping to prevent race conditions
+        self._last_request_time = now
+        
+        if time_since_last < self.config.min_interval:
+            await asyncio.sleep(self.config.min_interval - time_since_last)
             
         endpoint = endpoint.lstrip('/')
         url = f"{self.base_url}/{endpoint}" if endpoint else self.base_url
@@ -363,6 +413,7 @@ class BaseCrawler(ABC):
         """
         pass
             
+    @async_timed_cache()
     async def get_item(self, item_id: str) -> Dict[str, Any]:
         """Get detailed information for a specific item.
         

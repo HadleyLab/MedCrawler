@@ -5,7 +5,7 @@ import re
 from setuptools import setup, find_packages
 
 # Read version from package __init__.py
-with open('crawlers/__init__.py', 'r') as f:
+with open('medcrawler/__init__.py', 'r') as f:
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", f.read(), re.M)
     version = version_match.group(1) if version_match else '0.0.1'
 

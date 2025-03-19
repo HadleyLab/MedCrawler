@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medcrawler"
+dynamic = ["version"]
+description = "Asynchronous crawlers for medical literature databases"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+dependencies = [
+    "aiohttp>=3.8.0",
+    "tenacity>=8.0.0",
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.23.0"
+]
+
+[tool.setuptools]
+packages = ["medcrawler"]

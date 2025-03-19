@@ -10,8 +10,9 @@ import time
 from datetime import datetime, timedelta
 from typing import Optional, Dict, Any
 
-from .clinical_trials import ClinicalTrialsCrawler
-from .pubmed import PubMedCrawler
+from medcrawler.clinical_trials import ClinicalTrialsCrawler
+from medcrawler.pubmed import PubMedCrawler
+from medcrawler.logging_config import configure_logging
 
 logger = logging.getLogger(__name__)
 
@@ -168,13 +169,15 @@ def main():
     parser.add_argument('--recent', action='store_true',
                        help='Short for setting from-date to 90 days ago')
     
+    # Add logging level parameter
+    parser.add_argument('--log-level', type=str, default='INFO',
+                       choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
+                       help='Set the logging level (default: INFO)')
+    
     args = parser.parse_args()
     
-    # Configure logging
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
+    # Configure logging with specified level
+    configure_logging(args.log_level)
     
     # Handle --recent option
     if args.recent and not args.from_date:

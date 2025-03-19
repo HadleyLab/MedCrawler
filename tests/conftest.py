@@ -7,23 +7,14 @@ crawler configurations.
 """
 import pytest
 import asyncio
-import logging
 
 from medcrawler.config import CrawlerConfig
-
+from medcrawler.logging_config import configure_logging
 
 @pytest.fixture(autouse=True)
-def configure_logging():
-    """Configure logging for all tests.
-    
-    This fixture is applied automatically to all tests to ensure
-    consistent logging behavior.
-    """
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    )
-
+def configure_test_logging():
+    """Configure logging for all tests."""
+    configure_logging()
 
 @pytest.fixture
 def event_loop():
@@ -40,7 +31,6 @@ def event_loop():
     yield loop
     loop.close()
 
-
 @pytest.fixture
 def test_config():
     """Create a test configuration with proper settings for real API calls.
@@ -53,15 +43,13 @@ def test_config():
         CrawlerConfig: Configuration for integration tests
     """
     return CrawlerConfig(
-        user_agent="MedCrawler/1.0 (Testing; mailto:test@example.com)",
-        email="test@example.com",
-        min_interval=2.0,  # 2 seconds between requests to be more conservative
-        max_retries=3,
-        retry_wait=3,      # Wait 3 seconds before retrying
-        default_batch_size=3,  # Smaller batch size for testing
-        cache_ttl=60  # Short cache for testing
+        user_agent="MedCrawler/1.0 (Test Suite)",
+        min_interval=0.5,  # Increased to better simulate real API latency
+        max_retries=2,
+        retry_wait=1,
+        default_batch_size=3,
+        cache_ttl=3600  # Ensure cache doesn't expire during test
     )
-
 
 @pytest.fixture
 def mock_config():

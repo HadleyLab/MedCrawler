@@ -24,6 +24,8 @@ class CrawlerConfig:
         min_interval: Minimum seconds between requests
         max_retries: Maximum number of retry attempts
         retry_wait: Base wait time in seconds for exponential backoff
+        retry_max_wait: Maximum wait time in seconds for exponential backoff
+        retry_exponential_base: Base for exponential calculation (default: 2)
         default_batch_size: Default size for batch operations
         cache_ttl: Cache time-to-live in seconds
         extra_headers: Optional additional HTTP headers
@@ -32,8 +34,10 @@ class CrawlerConfig:
     email: str = "example@example.com"
     api_key: Optional[str] = None
     min_interval: float = 0.2  # Seconds between requests
-    max_retries: int = 3
-    retry_wait: int = 2  # Base wait time for exponential backoff
+    max_retries: int = 5  # Increased from 3 to be more resilient
+    retry_wait: int = 1  # Base wait time for exponential backoff
+    retry_max_wait: int = 60  # Maximum wait time (1 minute)
+    retry_exponential_base: float = 2.0  # Base for exponential calculation
     default_batch_size: int = 10
     cache_ttl: int = 3600  # 1 hour cache
     extra_headers: Dict[str, Any] = field(default_factory=dict)
@@ -50,6 +54,10 @@ class CrawlerConfig:
             raise ValueError("max_retries must be non-negative")
         if self.retry_wait < 0:
             raise ValueError("retry_wait must be non-negative")
+        if self.retry_max_wait < self.retry_wait:
+            raise ValueError("retry_max_wait must be greater than or equal to retry_wait")
+        if self.retry_exponential_base <= 1:
+            raise ValueError("retry_exponential_base must be greater than 1")
         if self.default_batch_size < 1:
             raise ValueError("default_batch_size must be positive")
         if self.cache_ttl < 0:
