@@ -7,6 +7,7 @@ including formatters, handlers, and log level settings for different environment
 import logging
 import sys
 from typing import Optional
+import colorlog
 
 
 def configure_logging(level: Optional[str] = None) -> None:
@@ -33,13 +34,22 @@ def configure_logging(level: Optional[str] = None) -> None:
     root_logger.handlers.clear()
     
     # Create console handler
-    console_handler = logging.StreamHandler()
+    console_handler = colorlog.StreamHandler()
     console_handler.setLevel(level)
     
-    # Create formatter
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
+    # Create color formatter
+    formatter = colorlog.ColoredFormatter(
+        "%(log_color)s%(asctime)s - %(name)s - %(levelname)s - %(message)s%(reset)s",
+        datefmt='%Y-%m-%d %H:%M:%S',
+        log_colors={
+            'DEBUG':    'cyan',
+            'INFO':     'green',
+            'WARNING':  'yellow',
+            'ERROR':    'red',
+            'CRITICAL': 'red,bg_white',
+        },
+        secondary_log_colors={},
+        style='%'
     )
     console_handler.setFormatter(formatter)
     
