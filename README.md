@@ -14,12 +14,21 @@ MedCrawler is a Python package that provides asynchronous interfaces for crawlin
 
 ## Installation
 
-Clone this repository and install the required dependencies:
-
+### As a Package
 ```bash
-git clone https://github.com/yourusername/MedCrawler.git
-cd MedCrawler
-pip install -r requirements.txt
+pip install git+https://github.com/yourusername/MedCrawler.git
+```
+
+### As a Git Submodule
+Add the repository as a submodule to your project:
+```bash
+git submodule add https://github.com/yourusername/MedCrawler.git
+git submodule update --init --recursive
+```
+
+Install the package in editable mode:
+```bash
+pip install -e ./MedCrawler
 ```
 
 ## Usage
@@ -155,6 +164,16 @@ class YourCrawler(BaseCrawler):
 
 ## Development
 
+### Project Structure
+```
+medcrawler/
+├── __init__.py     # Package version and exports
+├── base.py         # Base crawler implementation
+├── pubmed.py       # PubMed crawler
+├── clinical_trials.py  # ClinicalTrials.gov crawler
+└── config.py       # Configuration handling
+```
+
 ### Running Tests
 
 ```bash
@@ -163,7 +182,18 @@ pytest
 
 ### Code Style
 
-This project follows PEP 8 style guidelines.
+This project follows PEP 8 style guidelines and uses:
+- Black for code formatting
+- isort for import sorting
+- pytest for testing
+
+### Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 

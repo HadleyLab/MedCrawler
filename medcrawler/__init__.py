@@ -21,6 +21,15 @@ Example:
     ...         print(metadata["title"])
 """
 
+from .__version__ import (
+    __version__,
+    __title__,
+    __description__,
+    __author__,
+    __author_email__,
+    __license__,
+    __url__,
+)
 from .config import CrawlerConfig, DEFAULT_CRAWLER_CONFIG
 from .exceptions import CrawlerError, APIError, RateLimitError, ConfigurationError
 from .clinical_trials import ClinicalTrialsCrawler
@@ -39,6 +48,3 @@ __all__ = [
     'demo_crawler',
     'main'
 ]
-
-__version__ = '1.0.0'
-__author__ = 'MedCrawler Team'

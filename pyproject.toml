@@ -9,12 +9,51 @@ description = "Asynchronous crawlers for medical literature databases"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
+authors = [
+    {name = "MedCrawler Team", email = "example@example.com"}
+]
+keywords = ["medical", "crawler", "pubmed", "clinicaltrials", "async"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Internet :: WWW/HTTP",
+]
 dependencies = [
     "aiohttp>=3.8.0",
     "tenacity>=8.0.0",
     "pytest>=8.3.0",
-    "pytest-asyncio>=0.23.0"
+    "pytest-asyncio>=0.23.0",
+    "colorlog>=6.8.0"
 ]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/MedCrawler"
+Repository = "https://github.com/yourusername/MedCrawler.git"
+Documentation = "https://github.com/yourusername/MedCrawler#readme"
+
+[project.scripts]
+medcrawler = "medcrawler.demo:main"
 
 [tool.setuptools]
 packages = ["medcrawler"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
