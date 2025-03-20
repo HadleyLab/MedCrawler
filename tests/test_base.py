@@ -7,47 +7,74 @@ batch processing, and error handling.
 """
 import asyncio
 import time
+import hashlib
 import pytest
 from tenacity import RetryError
 
-from medcrawler.base import TimedCache, BaseCrawler, api_retry
+from medcrawler.base import BaseCrawler, api_retry, async_timed_cache, generate_cache_key, _cache_expiry
 from medcrawler.config import CrawlerConfig
 from medcrawler.clinical_trials import ClinicalTrialsCrawler
 from medcrawler.exceptions import APIError, RateLimitError
 
 
 @pytest.mark.asyncio
-async def test_timed_cache():
-    """Test the TimedCache implementation.
+async def test_generate_cache_key():
+    """Test cache key generation function."""
+    # Test with different args and kwargs
+    key1 = generate_cache_key("arg1", "arg2", kwarg1="value1")
+    key2 = generate_cache_key("arg1", "arg2", kwarg1="value1")
+    key3 = generate_cache_key("arg1", "arg2", kwarg1="different")
     
-    Tests basic cache operations:
-    - Setting and getting values
-    - Cache eviction when maxsize is reached
-    - TTL-based expiration
-    - Cache clearing
-    """
-    cache = TimedCache(ttl_seconds=1, maxsize=2)
+    # Same arguments should produce same key
+    assert key1 == key2
     
-    # Test basic set/get
-    cache.set("key1", "value1")
-    assert cache.get("key1") == "value1"
+    # Different arguments should produce different keys
+    assert key1 != key3
     
-    # Test maxsize eviction
-    cache.set("key2", "value2")
-    cache.set("key3", "value3")  # This should evict key1
-    assert cache.get("key1") is None
-    assert cache.get("key2") == "value2"
-    assert cache.get("key3") == "value3"
+    # Test keyword argument order shouldn't matter
+    key4 = generate_cache_key("arg", kwarg1="value1", kwarg2="value2")
+    key5 = generate_cache_key("arg", kwarg2="value2", kwarg1="value1")
+    assert key4 == key5
+
+
+@pytest.mark.asyncio
+async def test_async_timed_cache():
+    """Test the async_timed_cache implementation."""
+    # Clear any existing cache entries
+    _cache_expiry.clear()
+    
+    # Track function calls
+    call_count = 0
+    
+    @async_timed_cache(ttl_seconds=1)
+    async def cached_func(arg1, arg2=None):
+        nonlocal call_count
+        call_count += 1
+        # Return a constant value that doesn't depend on call_count
+        return f"{arg1}-{arg2}"
+    
+    # Test basic caching
+    result1 = await cached_func("test", arg2="value")
+    result2 = await cached_func("test", arg2="value")
+    assert result1 == result2
+    assert call_count == 1  # Function should only be called once
+    
+    # Test different args bypass cache
+    result3 = await cached_func("test", arg2="different")
+    assert result3 == "test-different"  # Predictable result
+    assert call_count == 2  # Function should be called again
     
     # Test TTL expiration
-    cache.set("key4", "value4")
     await asyncio.sleep(1.1)  # Wait for TTL to expire
-    assert cache.get("key4") is None
+    result4 = await cached_func("test", arg2="value")
+    assert result4 == "test-value"  # Same return value but should be recomputed
+    assert call_count == 3  # Function should be called again after TTL expires
     
-    # Test clear
-    cache.set("key5", "value5")
-    cache.clear()
-    assert cache.get("key5") is None
+    # Test cache clearing
+    cached_func.cache_clear()
+    result5 = await cached_func("test", arg2="value")
+    assert result5 == "test-value"  # Same result after cache cleared
+    assert call_count == 4  # Function should be called again after cache clear
 
 
 @pytest.mark.asyncio
@@ -77,11 +104,7 @@ async def test_rate_limiting(test_config):
 
 @pytest.mark.asyncio
 async def test_session_management():
-    """Test proper session creation and cleanup.
-    
-    Verifies that the aiohttp session is correctly created when entering
-    the async context and properly closed when exiting.
-    """
+    """Test proper session creation and cleanup."""
     crawler = ClinicalTrialsCrawler()
     
     # Session should not exist before context
@@ -97,14 +120,7 @@ async def test_session_management():
 
 @pytest.mark.asyncio
 async def test_batch_processing(test_config):
-    """Test batch processing functionality with real API calls.
-    
-    Verifies that multiple items can be processed in batches and that
-    all expected metadata is returned.
-    
-    Args:
-        test_config: Test configuration fixture
-    """
+    """Test batch processing functionality with real API calls."""
     async with ClinicalTrialsCrawler(test_config) as crawler:
         items = ["NCT00001372", "NCT00001379", "NCT00001622"]
         test_config.default_batch_size = 2
@@ -122,14 +138,7 @@ async def test_batch_processing(test_config):
 
 @pytest.mark.asyncio
 async def test_error_handling(test_config):
-    """Test error handling with real API calls.
-    
-    Verifies that the crawler properly handles and raises exceptions
-    for invalid IDs and rate limiting.
-    
-    Args:
-        test_config: Test configuration fixture
-    """
+    """Test error handling with real API calls."""
     async with ClinicalTrialsCrawler(test_config) as crawler:
         # Test invalid ID
         with pytest.raises(APIError):
@@ -144,13 +153,7 @@ async def test_error_handling(test_config):
 
 @pytest.mark.asyncio
 async def test_exponential_backoff():
-    """Test that exponential backoff works correctly with retries.
-    
-    This test verifies that:
-    1. The wait time increases exponentially between retries
-    2. The wait time doesn't exceed the configured maximum
-    3. The correct number of retries is attempted
-    """
+    """Test that exponential backoff works correctly with retries."""
     test_config = CrawlerConfig(
         retry_wait=1,
         retry_max_wait=8,
@@ -158,7 +161,7 @@ async def test_exponential_backoff():
         max_retries=3
     )
     
-    # Mock API that fails with 500 error
+    # Mock API that fails with error
     class TestCrawler(BaseCrawler):
         def __init__(self):
             super().__init__("http://test.com", test_config)
@@ -187,12 +190,15 @@ async def test_exponential_backoff():
             # Should have attempted max_retries times total
             assert crawler.attempt == test_config.max_retries
             
-            # Wait times should follow exponential pattern up to max
-            expected_waits = [
-                test_config.retry_wait * (test_config.retry_exponential_base ** i)
-                for i in range(test_config.max_retries - 1)
-            ]
-            expected_waits = [min(w, test_config.retry_max_wait) for w in expected_waits]
+            # Wait times should follow the wait chain pattern defined in api_retry
+            # First wait is from wait_fixed, subsequent waits are from wait_exponential
+            expected_waits = [test_config.retry_wait]
+            expected_waits.append(
+                min(
+                    test_config.retry_wait * (test_config.retry_exponential_base ** 1),
+                    test_config.retry_max_wait
+                )
+            )
             
             # Check that we have the expected number of retry waits
             assert len(crawler.retry_times) == len(expected_waits)

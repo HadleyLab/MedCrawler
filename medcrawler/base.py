@@ -12,9 +12,10 @@ import logging
 import time
 import json
 import ssl
+import hashlib
 from abc import ABC, abstractmethod
-from functools import wraps
-from typing import Dict, Any, Optional, AsyncGenerator, Callable, TypeVar, Union, Set, List
+from functools import wraps, lru_cache
+from typing import Dict, Any, Optional, AsyncGenerator, Callable, TypeVar, Union, Set, List, Tuple
 import aiohttp
 from tenacity import (
     retry,
@@ -24,7 +25,9 @@ from tenacity import (
     retry_if_not_exception_type,
     before_sleep_log,
     after_log,
-    RetryError
+    RetryError,
+    wait_fixed,
+    wait_chain
 )
 
 from medcrawler.config import CrawlerConfig, DEFAULT_CRAWLER_CONFIG
@@ -41,44 +44,9 @@ ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
 
 
-def api_retry(config: Optional[CrawlerConfig] = None) -> Callable:
-    """Retry decorator for API calls with exponential backoff.
-    
-    Args:
-        config: Configuration object with retry settings. If not provided,
-               the default configuration will be used.
-    
-    Returns:
-        A decorated function that will retry on specified exceptions.
-        
-    The retry strategy uses exponential backoff with the following behavior:
-    - Initial wait time is retry_wait seconds
-    - Each retry multiplies the wait time by retry_exponential_base
-    - Wait time is capped at retry_max_wait seconds
-    - Retries up to max_retries times
-    - Only retries on specific exceptions (HTTP errors, timeouts, etc.)
-    - Does not retry on RateLimitError (handled separately)
-    """
-    cfg = config or DEFAULT_CRAWLER_CONFIG
-    
-    return retry(
-        stop=stop_after_attempt(cfg.max_retries),
-        wait=wait_exponential(
-            multiplier=cfg.retry_wait,
-            exp_base=cfg.retry_exponential_base,
-            max=cfg.retry_max_wait
-        ),
-        retry=retry_if_exception_type((
-            aiohttp.ClientError, 
-            asyncio.TimeoutError, 
-            json.JSONDecodeError,
-            ValueError,
-            APIError
-        )) & retry_if_not_exception_type(RateLimitError),
-        before_sleep=before_sleep_log(logger, logging.WARNING),
-        after=after_log(logger, logging.INFO),
-        reraise=True
-    )
+# Cache expiration times dictionary to track TTL for cached items
+_cache_expiry = {}
+_caches = {}  # Keep for backward compatibility with tests
 
 
 class TimedCache:
@@ -89,26 +57,14 @@ class TimedCache:
     """
     
     def __init__(self, ttl_seconds: int = 3600, maxsize: int = 1000):
-        """Initialize a new timed cache.
-        
-        Args:
-            ttl_seconds: Time-to-live for cache entries in seconds
-            maxsize: Maximum number of items to store in the cache
-        """
+        """Initialize a new timed cache."""
         self.ttl = ttl_seconds
         self.maxsize = maxsize
-        self.cache: Dict[str, tuple[Any, float]] = {}
+        self.cache: Dict[str, Tuple[Any, float]] = {}
         logger.debug(f"TimedCache initialized: TTL={ttl_seconds}s, maxsize={maxsize}")
         
     def get(self, key: str) -> Optional[Any]:
-        """Get an item from the cache if it exists and hasn't expired.
-        
-        Args:
-            key: Cache key to retrieve
-            
-        Returns:
-            The cached value, or None if not found or expired
-        """
+        """Get an item from the cache if it exists and hasn't expired."""
         if key not in self.cache:
             return None
             
@@ -122,15 +78,7 @@ class TimedCache:
         return value
         
     def set(self, key: str, value: Any) -> None:
-        """Store an item in the cache.
-        
-        Args:
-            key: Cache key to store
-            value: Value to cache
-            
-        Notes:
-            If the cache is full, the oldest entry will be evicted.
-        """
+        """Store an item in the cache."""
         if len(self.cache) >= self.maxsize and key not in self.cache:
             oldest_key = min(self.cache.keys(), key=lambda k: self.cache[k][1])
             logger.debug(f"Cache evicting oldest item: {oldest_key}")
@@ -145,115 +93,161 @@ class TimedCache:
         self.cache.clear()
 
 
-# Module-level cache instances
-_caches: Dict[str, TimedCache] = {}
+def generate_cache_key(*args, **kwargs) -> str:
+    """Generate a consistent cache key for function arguments.
+    
+    Uses a hash of the stringified args and kwargs to create a unique key.
+    
+    Args:
+        *args: Positional arguments to include in the key
+        **kwargs: Keyword arguments to include in the key
+        
+    Returns:
+        String hash to use as a cache key
+    """
+    # Create a list of string representations of all args
+    key_parts = [str(arg) for arg in args]
+    
+    # Add sorted kwargs to ensure consistent ordering
+    for k, v in sorted(kwargs.items()):
+        key_parts.append(f"{k}={v}")
+    
+    # Join all parts and hash to create a fixed-length key
+    key_str = ":".join(key_parts)
+    return hashlib.md5(key_str.encode()).hexdigest()
 
-def async_timed_cache(ttl_seconds: int = 3600, maxsize: int = 1000):
-    """Cache decorator for async functions with TTL expiration."""
+
+def api_retry(config: Optional[CrawlerConfig] = None) -> Callable:
+    """Retry decorator for API calls with exponential backoff.
+    
+    Implements a standardized retry strategy using tenacity with settings
+    from the provided configuration.
+    
+    Args:
+        config: Configuration object with retry settings.
+               If not provided, the default configuration will be used.
+    
+    Returns:
+        A decorated function that will retry on specified exceptions.
+    """
+    cfg = config or DEFAULT_CRAWLER_CONFIG
+    
+    # Use tenacity's retry decorator with our configuration
+    return retry(
+        stop=stop_after_attempt(cfg.max_retries),
+        wait=wait_chain(
+            # Start with fixed wait time
+            wait_fixed(cfg.retry_wait),
+            # Then switch to exponential backoff
+            wait_exponential(
+                multiplier=cfg.retry_wait,
+                exp_base=cfg.retry_exponential_base,
+                max=cfg.retry_max_wait
+            )
+        ),
+        retry=retry_if_exception_type((
+            aiohttp.ClientError, 
+            asyncio.TimeoutError, 
+            json.JSONDecodeError,
+            ValueError,
+            APIError
+        )) & retry_if_not_exception_type(RateLimitError),
+        before_sleep=before_sleep_log(logger, logging.WARNING),
+        after=after_log(logger, logging.INFO),
+        reraise=True
+    )
+
+
+def async_timed_cache(ttl_seconds: int = 3600, maxsize: int = 128):
+    """Async-compatible cache with time-based expiration.
+    
+    Uses a simple dictionary-based cache with timestamp checking.
+    
+    Args:
+        ttl_seconds: Time-to-live for cache entries in seconds
+        maxsize: Maximum number of items to store in the cache
+        
+    Returns:
+        A decorated function that will cache results with TTL expiration
+    """
     def decorator(func):
-        # Use function's qualified name as cache key prefix
-        cache_key_prefix = f"{func.__module__}.{func.__qualname__}"
-        if cache_key_prefix not in _caches:
-            _caches[cache_key_prefix] = TimedCache(ttl_seconds=ttl_seconds, maxsize=maxsize)
-        cache = _caches[cache_key_prefix]
-        logger.debug(f"Using cache for {cache_key_prefix}: TTL={ttl_seconds}s, maxsize={maxsize}")
+        # Create simple cache storage - key -> (result, timestamp)
+        cache = {}
         
         @wraps(func)
         async def wrapper(*args, **kwargs):
-            # Optimized key generation - only include essential components
-            if args and hasattr(args[0], '__class__'):
-                instance = args[0]
-                # For API requests, the key parts that matter are:
-                # 1. The crawler class (determines API)
-                # 2. The function name (determines endpoint)
-                # 3. The actual parameters that affect the request
-                key_parts = [
-                    instance.__class__.__name__,
-                    func.__name__
-                ]
-                if len(args) > 1:  # Add non-self args
-                    key_parts.extend(str(arg) for arg in args[1:])
-                if kwargs:  # Add kwargs in sorted order for consistency
-                    key_parts.extend(f"{k}={v}" for k, v in sorted(kwargs.items()))
-                key = ":".join(key_parts)
-            else:
-                # For non-instance methods, use all args and kwargs
-                key_parts = [func.__name__]
-                if args:
-                    key_parts.extend(str(arg) for arg in args)
-                if kwargs:
-                    key_parts.extend(f"{k}={v}" for k, v in sorted(kwargs.items()))
-                key = ":".join(key_parts)
+            # Generate a unique key for these arguments
+            key = generate_cache_key(func.__qualname__, *args, **kwargs)
             
-            logger.debug(f"Cache key: {key}")
+            # Check for cached result
+            if key in cache:
+                result, timestamp = cache[key]
+                # If within TTL, return cached result
+                if time.time() - timestamp < ttl_seconds:
+                    logger.debug(f"Cache hit for {func.__qualname__}")
+                    return result
+                else:
+                    # Expired, remove from cache
+                    logger.debug(f"Cache expired for {func.__qualname__}")
+                    del cache[key]
             
-            cached_value = cache.get(key)
-            if cached_value is not None:
-                logger.debug(f"Cache hit for key: {key}")
-                return cached_value
-            
-            logger.debug(f"Cache miss for key: {key}, fetching data")
+            # Not in cache or expired, call the function
+            logger.debug(f"Cache miss for {func.__qualname__}, executing function")
             result = await func(*args, **kwargs)
-            cache.set(key, result)
-            return result
             
-        wrapper.cache = cache  # Expose cache object for testing
+            # Store in cache with timestamp
+            cache[key] = (result, time.time())
+            
+            # Limit cache size if needed
+            if len(cache) > maxsize:
+                # Find the oldest entry
+                oldest_key = min(cache.keys(), key=lambda k: cache[k][1])
+                # Remove it
+                if oldest_key != key:  # Do not remove what we just added
+                    del cache[oldest_key]
+                    logger.debug(f"Cache evicted oldest item: {oldest_key}")
+            
+            return result
+        
+        # Add method to clear the cache
+        wrapper.cache_clear = lambda: cache.clear()
+        
         return wrapper
     return decorator
 
 
 class BaseCrawler(ABC):
-    """Base class for medical literature medcrawler.
-    
-    Provides common functionality for making API requests, handling errors,
-    managing rate limits, and processing responses.
-    
-    This abstract class defines the core interface that all crawler
-    implementations must follow.
-    """
-    
-    # Class-level variable to track last request time across all instances
-    _last_request_time = 0.0
+    """Base class for medical literature medcrawler."""
     
     def __init__(
         self,
         base_url: str,
         config: Optional[CrawlerConfig] = None
     ):
-        """Initialize a crawler with a base URL and configuration.
-        
-        Args:
-            base_url: The base URL for the API
-            config: Configuration object with crawler settings
-        """
+        """Initialize a crawler with a base URL and configuration."""
         self.base_url = base_url.rstrip('/')
         self.config = config or DEFAULT_CRAWLER_CONFIG
         self.session: Optional[aiohttp.ClientSession] = None
         self.headers = {"User-Agent": self.config.user_agent}
+        self._last_request_time = 0.0  # Instance-level rate limiting
         
         # Setup debug mode based on environment
         self.debug_mode = logger.getEffectiveLevel() <= logging.DEBUG
         logger.info(f"Initialized {self.__class__.__name__} with base URL: {self.base_url}")
-    
+        
     async def __aenter__(self):
-        """Setup resources for async context.
-        
-        Creates an aiohttp session for use within the async context.
-        
-        Returns:
-            The crawler instance
-        """
+        """Setup resources for async context."""
         if not self.session:
             logger.debug(f"{self.__class__.__name__}: Creating new aiohttp session")
             conn = aiohttp.TCPConnector(ssl=ssl_context)
             self.session = aiohttp.ClientSession(headers=self.headers, connector=conn)
+        
+        # Reset state for clean test isolation
+        self._last_request_time = 0.0
         return self
         
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        """Cleanup resources when exiting async context.
-        
-        Closes the aiohttp session when exiting the async context.
-        """
+        """Cleanup resources when exiting async context."""
         if self.session:
             logger.debug(f"{self.__class__.__name__}: Closing aiohttp session")
             await self.session.close()
@@ -266,33 +260,24 @@ class BaseCrawler(ABC):
         params: Optional[Dict] = None,
         error_prefix: str = "API Error"
     ) -> Union[Dict[str, Any], str]:
-        """Make an HTTP request with retry logic.
-        
-        Args:
-            endpoint: API endpoint to request
-            params: Query parameters for the request
-            error_prefix: Prefix for error messages
-            
-        Returns:
-            Response data as dict (for JSON) or string (for other content types)
-            
-        Raises:
-            RuntimeError: If the crawler is not used in an async context
-            RateLimitError: If the API rate limit is exceeded
-            APIError: For other API errors
-        """
+        """Make an HTTP request with retry logic."""
         if not self.session:
             raise RuntimeError(f"{self.__class__.__name__} must be used within async context")
         
-        # Calculate time since last request and sleep if needed
+        # Always wait for min_interval since last request
         now = time.time()
         time_since_last = now - self._last_request_time
-        
-        # Update last request time before sleeping to prevent race conditions
-        self._last_request_time = now
+        logger.debug(f"Time since last request: {time_since_last:.3f}s")
         
         if time_since_last < self.config.min_interval:
-            await asyncio.sleep(self.config.min_interval - time_since_last)
+            delay = self.config.min_interval - time_since_last
+            logger.debug(f"Sleeping for {delay:.3f}s to enforce rate limit")
+            await asyncio.sleep(delay)
+            logger.debug("Finished sleeping")
+        
+        # Update last_request_time after sleeping
+        self._last_request_time = time.time()
+        logger.debug(f"Updated last_request_time to {self._last_request_time}")
             
         endpoint = endpoint.lstrip('/')
         url = f"{self.base_url}/{endpoint}" if endpoint else self.base_url
@@ -312,7 +297,8 @@ class BaseCrawler(ABC):
                     retry_after = response.headers.get("Retry-After", "60")
                     message = f"Rate limit exceeded: {await response.text()}"
                     logger.warning(message)
-                    raise RateLimitError(message)
+                    retry_after_int = int(retry_after) if retry_after.isdigit() else None
+                    raise RateLimitError(message, retry_after_int)
                 
                 if status == 404:
                     message = f"Resource not found: {await response.text()}"
@@ -363,69 +349,27 @@ class BaseCrawler(ABC):
         from_date: Optional[str] = None,
         to_date: Optional[str] = None
     ) -> AsyncGenerator[str, None]:
-        """Search for items matching the query and yield their IDs.
-        
-        Args:
-            query: Search query string
-            max_results: Maximum number of results to return
-            old_item_ids: Set of item IDs to exclude from results
-            from_date: Start date for filtering results
-            to_date: End date for filtering results
-            
-        Yields:
-            Item IDs matching the search criteria
-        """
+        """Search for items matching the query and yield their IDs."""
         pass
     
     @abstractmethod    
     async def get_metadata_request_params(self, item_id: str) -> Dict:
-        """Get parameters for requesting item metadata.
-        
-        Args:
-            item_id: ID of the item to get parameters for
-            
-        Returns:
-            Dictionary of request parameters
-        """
+        """Get parameters for requesting item metadata."""
         pass
     
     @abstractmethod
     async def get_metadata_endpoint(self) -> str:
-        """Get the endpoint URL for metadata requests.
-        
-        Returns:
-            Endpoint path string
-        """
+        """Get the endpoint URL for metadata requests."""
         pass
     
     @abstractmethod    
     def extract_metadata(self, response_data: Any) -> Dict[str, Any]:
-        """Extract metadata from the API response.
-        
-        Args:
-            response_data: Raw API response data
-            
-        Returns:
-            Structured metadata dictionary
-            
-        Raises:
-            APIError: If metadata extraction fails
-        """
+        """Extract metadata from the API response."""
         pass
             
     @async_timed_cache()
     async def get_item(self, item_id: str) -> Dict[str, Any]:
-        """Get detailed information for a specific item.
-        
-        Args:
-            item_id: ID of the item to retrieve
-            
-        Returns:
-            Item metadata dictionary
-            
-        Raises:
-            APIError: If retrieval fails
-        """
+        """Get detailed information for a specific item."""
         endpoint = await self.get_metadata_endpoint()
         params = await self.get_metadata_request_params(item_id)
         
@@ -446,16 +390,7 @@ class BaseCrawler(ABC):
         item_ids: List[str],
         batch_size: Optional[int] = None
     ) -> List[Dict[str, Any]]:
-        """Get multiple items in parallel batches.
-        
-        Args:
-            item_ids: List of item IDs to retrieve
-            batch_size: Number of items to fetch in parallel (defaults to
-                       config.default_batch_size)
-                       
-        Returns:
-            List of successfully retrieved item metadata dictionaries
-        """
+        """Get multiple items in parallel batches."""
         batch_size = batch_size or self.config.default_batch_size
         results = []
         total = len(item_ids)
