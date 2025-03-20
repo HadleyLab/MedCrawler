@@ -17,12 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class PubMedCrawler(BaseCrawler):
-    """Crawler for PubMed articles using NCBI E-utilities.
-    
-    This crawler interfaces with PubMed's E-utilities API to search for articles
-    and retrieve detailed article metadata in XML format. It implements the
-    abstract methods defined in BaseCrawler specifically for PubMed.
-    """
+    """Crawler for PubMed articles using NCBI E-utilities."""
     
     def __init__(self, config: Optional[CrawlerConfig] = None):
         """Initialize the PubMed crawler with NCBI E-utilities endpoint.
@@ -31,6 +26,9 @@ class PubMedCrawler(BaseCrawler):
             config: Optional crawler configuration. If not provided,
                    the default configuration will be used.
         """
+        config = config or CrawlerConfig()
+        config.api_type = "pubmed"  # Ensure PubMed-specific settings
+        
         super().__init__(
             "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
             config
@@ -47,6 +45,8 @@ class PubMedCrawler(BaseCrawler):
             logger.debug(f"  Tool name: {self.tool}")
             logger.debug(f"  Email: {self.email or 'Not provided'}")
             logger.debug(f"  API key: {'Provided' if self.api_key else 'Not used'}")
+            logger.debug(f"  Rate limit: {1/self.config.min_interval:.1f} req/sec")
+            logger.debug(f"  Batch size: {self.config.default_batch_size}")
         else:
             logger.info("PubMed crawler initialized")
 
@@ -277,3 +277,50 @@ class PubMedCrawler(BaseCrawler):
             for date in pubdate_elem.findall("*")
             if date is not None and date.text
         )
+
+    async def get_items_batch(
+        self,
+        item_ids: List[str],
+        batch_size: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        """Get multiple articles in parallel batches.
+        
+        Override base implementation to use smaller batch sizes for PubMed's
+        rate limits and add delay between batches.
+        
+        Args:
+            item_ids: List of PMIDs to retrieve
+            batch_size: Optional override for batch size
+            
+        Returns:
+            List of article metadata dictionaries
+        """
+        # Use smaller batch size for PubMed to avoid rate limits
+        batch_size = min(batch_size or 3, 3)  # Max 3 per batch
+        results = []
+        total = len(item_ids)
+        
+        logger.info(f"Fetching {total} items in batches of {batch_size}")
+        
+        for i in range(0, total, batch_size):
+            batch = item_ids[i:i + batch_size]
+            batch_num = i // batch_size + 1
+            total_batches = (total - 1) // batch_size + 1
+            
+            logger.info(f"Fetching batch {batch_num}/{total_batches} ({len(batch)} items)")
+            
+            # Process items in batch sequentially to respect rate limits
+            batch_results = []
+            for item_id in batch:
+                try:
+                    result = await self.get_item(item_id)
+                    batch_results.append(result)
+                except Exception as e:
+                    logger.error(f"Error fetching item {item_id}: {e}")
+                    continue
+            
+            results.extend(batch_results)
+            logger.info(f"Completed batch {batch_num}/{total_batches}: "
+                       f"{len(batch_results)} successful")
+            
+        return results

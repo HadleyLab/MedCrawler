@@ -8,9 +8,9 @@ JSON responses from ClinicalTrials.gov.
 import json
 import logging
 from typing import Dict, Any, Optional, AsyncGenerator, Set, List
-from .base import BaseCrawler, async_timed_cache
-from .config import CrawlerConfig
-from .exceptions import APIError
+from medcrawler.base import BaseCrawler, async_timed_cache
+from medcrawler.config import CrawlerConfig
+from medcrawler.exceptions import APIError
 
 logger = logging.getLogger(__name__)
 
@@ -30,13 +30,20 @@ class ClinicalTrialsCrawler(BaseCrawler):
             config: Optional crawler configuration. If not provided,
                    the default configuration will be used.
         """
+        config = config or CrawlerConfig()
+        config.api_type = "clinicaltrials"  # Ensure ClinicalTrials-specific settings
+        
         super().__init__(
             "https://clinicaltrials.gov/api/v2/studies",
             config
         )
         
         if self.debug_mode:
-            logger.debug("ClinicalTrials.gov crawler initialized")
+            logger.debug(f"ClinicalTrials.gov crawler initialized with:")
+            logger.debug(f"  Rate limit: {1/self.config.min_interval:.1f} req/sec")
+            logger.debug(f"  Batch size: {self.config.default_batch_size}")
+        else:
+            logger.info("ClinicalTrials.gov crawler initialized")
     
     @async_timed_cache()
     async def _search_studies(
@@ -46,6 +53,8 @@ class ClinicalTrialsCrawler(BaseCrawler):
         page_token: Optional[str] = None
     ) -> Dict:
         """Search for clinical trials.
+        
+        Uses caching and enforces rate limits for search requests.
         
         Args:
             query: Search query string for clinical trials
@@ -60,7 +69,7 @@ class ClinicalTrialsCrawler(BaseCrawler):
         """
         params = {
             "query.term": query,
-            "pageSize": page_size,
+            "pageSize": min(page_size, 100),  # Enforce maximum page size
             "format": "json"
         }
         if page_token:
@@ -210,3 +219,51 @@ class ClinicalTrialsCrawler(BaseCrawler):
             "completion_date": status.get("primaryCompletionDateStruct", {}).get("date"),
             "last_updated": status.get("lastUpdateSubmitDateStruct", {}).get("date")
         }
+
+    async def get_items_batch(
+        self,
+        item_ids: List[str],
+        batch_size: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        """Get multiple studies in sequential batches.
+        
+        Override base implementation to process items sequentially and enforce
+        consistent rate limiting. ClinicalTrials.gov API v2 has rate limits
+        that are best handled with sequential processing.
+        
+        Args:
+            item_ids: List of NCT IDs to retrieve
+            batch_size: Optional override for batch size
+            
+        Returns:
+            List of study metadata dictionaries
+        """
+        # Use conservative batch size
+        batch_size = min(batch_size or 5, 5)  # Max 5 per batch
+        results = []
+        total = len(item_ids)
+        
+        logger.info(f"Fetching {total} items in batches of {batch_size}")
+        
+        for i in range(0, total, batch_size):
+            batch = item_ids[i:i + batch_size]
+            batch_num = i // batch_size + 1
+            total_batches = (total - 1) // batch_size + 1
+            
+            logger.info(f"Fetching batch {batch_num}/{total_batches} ({len(batch)} items)")
+            
+            # Process items in batch sequentially to ensure consistent rate limiting
+            batch_results = []
+            for item_id in batch:
+                try:
+                    result = await self.get_item(item_id)
+                    batch_results.append(result)
+                except Exception as e:
+                    logger.error(f"Error fetching item {item_id}: {e}")
+                    continue
+            
+            results.extend(batch_results)
+            logger.info(f"Completed batch {batch_num}/{total_batches}: "
+                       f"{len(batch_results)} successful")
+        
+        return results

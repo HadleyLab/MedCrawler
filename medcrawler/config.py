@@ -29,21 +29,25 @@ class CrawlerConfig:
         default_batch_size: Default size for batch operations
         cache_ttl: Cache time-to-live in seconds
         extra_headers: Optional additional HTTP headers
+        api_type: Type of API being used ('pubmed' or 'clinicaltrials')
     """
     user_agent: str = "MedCrawler/1.0"
     email: str = "example@example.com"
     api_key: Optional[str] = None
-    min_interval: float = 0.2  # Seconds between requests
-    max_retries: int = 5  # Increased from 3 to be more resilient
-    retry_wait: int = 1  # Base wait time for exponential backoff
-    retry_max_wait: int = 60  # Maximum wait time (1 minute)
-    retry_exponential_base: float = 2.0  # Base for exponential calculation
-    default_batch_size: int = 10
-    cache_ttl: int = 3600  # 1 hour cache
+    min_interval: float = 0.34  # Default to PubMed's limit (~3 req/sec)
+    max_retries: int = 5
+    retry_wait: int = 2  # Base wait time for rate limit recovery
+    retry_max_wait: int = 120  # Maximum wait time for severe rate limiting
+    retry_exponential_base: float = 2.0
+    default_batch_size: int = 3  # Conservative default based on PubMed
+    cache_ttl: int = 3600
     extra_headers: Dict[str, Any] = field(default_factory=dict)
+    api_type: str = "pubmed"  # Default to stricter PubMed limits
     
     def __post_init__(self) -> None:
-        """Validate configuration after initialization.
+        """Validate configuration and adjust settings based on API type.
+        
+        Updates min_interval and batch_size based on API type and key presence.
         
         Raises:
             ValueError: If any configuration parameter has an invalid value
@@ -62,6 +66,20 @@ class CrawlerConfig:
             raise ValueError("default_batch_size must be positive")
         if self.cache_ttl < 0:
             raise ValueError("cache_ttl must be non-negative")
+        
+        # Adjust settings based on API type and authentication
+        if self.api_type == "pubmed":
+            if self.api_key:
+                self.min_interval = 0.1  # 10 requests per second with API key
+                self.default_batch_size = 5
+            else:
+                self.min_interval = 0.34  # ~3 requests per second without API key
+                self.default_batch_size = 3
+        elif self.api_type == "clinicaltrials":
+            self.min_interval = 0.1  # More lenient rate limiting
+            self.default_batch_size = 5
+        else:
+            raise ValueError("api_type must be either 'pubmed' or 'clinicaltrials'")
     
     @classmethod
     def from_dict(cls, config_dict: Dict[str, Any]) -> CrawlerConfig:
