@@ -9,9 +9,9 @@ import json
 import xml.etree.ElementTree as ET
 import logging
 from typing import Dict, Any, Optional, AsyncGenerator, Set, List
-from .base import BaseCrawler, async_timed_cache
-from .config import CrawlerConfig
-from .exceptions import APIError
+from medcrawler.base import BaseCrawler, async_timed_cache
+from medcrawler.config import CrawlerConfig
+from medcrawler.exceptions import APIError
 
 logger = logging.getLogger(__name__)
 
